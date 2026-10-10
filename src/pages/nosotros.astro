@@ -1,0 +1,71 @@
+---
+import { ArrowRight, Boxes, Handshake, Info } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ActionLink from '../components/ActionLink.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<BaseLayout
+  title="Quiénes somos | Plásticos Santuario Caucasia"
+  description="Conoce la historia, misión y visión de Plásticos Santuario en Caucasia. Acompañamos a negocios con opciones para empacar, servir y entregar."
+>
+  <PageHero
+    breadcrumb="Quiénes somos"
+    eyebrow="Nuestra historia"
+    title="Crecemos junto a quienes hacen empresa"
+    accent="en Caucasia."
+    description="Desde 2017 acompañamos a personas emprendedoras, tiendas, negocios de alimentos y comercios que necesitan productos para servir, empacar y entregar cada día."
+  />
+
+  <section class="section story-section" aria-labelledby="story-title">
+    <div class="container story-grid">
+      <div class="story-date" aria-label="Fundación en Caucasia el 17 de diciembre de 2017">
+        <span class="story-date-kicker">Nacimos en Caucasia</span>
+        <strong>2017</strong>
+        <span>17 de diciembre</span>
+      </div>
+      <div class="story-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> De dónde venimos</p>
+        <h2 id="story-title">Una historia que seguimos construyendo contigo.</h2>
+        <p>Plásticos Santuario inició en Caucasia el 17 de diciembre de 2017. Desde aquí hemos acompañado a personas emprendedoras, tiendas, negocios de alimentos y comercios que necesitan productos para servir, empacar y entregar cada día. El portafolio ha reunido diferentes familias porque las necesidades de nuestros clientes también son diversas: hay quien busca una bolsa sencilla para su mostrador y quien necesita pensar en la presentación completa de una nueva receta.</p>
+        <p>Creemos que atender bien empieza por escuchar. Antes de señalar una referencia, queremos entender qué vendes, cómo lo presentas y a dónde debe llegar. Esa conversación permite orientar mejor la búsqueda y revisar las opciones disponibles para cada caso. Nuestra historia en Caucasia sigue construyéndose con los negocios que vuelven, preguntan por nuevas ideas y nos invitan a encontrar soluciones para su trabajo diario.</p>
+        <a class="text-action" href="/#lineas">Explora nuestras líneas <ArrowRight size={18} aria-hidden="true" /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section institutional-section" aria-labelledby="institutional-title">
+    <div class="container">
+      <div class="section-heading"><p class="eyebrow"><span class="eyebrow-line"></span> Nuestra dirección</p><h2 id="institutional-title">Lo que hacemos y hacia dónde queremos crecer.</h2></div>
+      <div class="institutional-grid">
+        <article><span>01 / 02</span><h3>Nuestra misión.</h3><p>Acompañar a los negocios de Caucasia y la región con una oferta clara de empaques, desechables y productos complementarios, atención cercana y orientación útil para elegir según cada necesidad. Buscamos facilitar el trabajo cotidiano de quienes emprenden, venden y sirven, con información honesta sobre las opciones disponibles y un servicio responsable en cada consulta.</p></article>
+        <article><span>02 / 02</span><h3>Nuestra visión.</h3><p>Ser un referente cercano y confiable para los negocios de Caucasia y las poblaciones que atendemos, reconocido por la variedad de su oferta, la calidad de la atención y su capacidad de evolucionar con las necesidades de sus clientes. Queremos seguir ampliando las soluciones que ofrecemos y promover decisiones de empaque cada vez mejor informadas.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reasons-section" aria-labelledby="reasons-title">
+    <div class="container">
+      <div class="section-heading"><p class="eyebrow"><span class="eyebrow-line"></span> Nuestro servicio</p><h2 id="reasons-title">Lo que orienta cada conversación.</h2></div>
+      <div class="reason-grid">
+        <article class="reason-card"><span class="reason-icon"><Boxes size={27} aria-hidden="true" /></span><h3>Variedad con propósito</h3><p>Reunimos líneas diferentes para que un negocio pueda explorar más de una forma de servir o empacar, sin perder de vista el uso real de cada producto.</p></article>
+        <article class="reason-card"><span class="reason-icon"><Handshake size={27} aria-hidden="true" /></span><h3>Atención cercana</h3><p>Una consulta puede empezar con una medida precisa o con una idea que todavía está tomando forma. En ambos casos, buscamos escuchar y orientar con claridad.</p></article>
+        <article class="reason-card"><span class="reason-icon"><Info size={27} aria-hidden="true" /></span><h3>Información responsable</h3><p>Queremos hablar con precisión sobre materiales, usos y disponibilidad. Cuando una característica requiere ficha técnica o confirmación del proveedor, la verificamos antes de presentarla como una promesa.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section commitment-section" aria-labelledby="commitment-title">
+    <div class="container commitment-grid">
+      <div><p class="eyebrow"><span class="eyebrow-line"></span> Compromiso con el entorno</p><h2 id="commitment-title">Elegir mejor también exige información clara.</h2></div>
+      <p>Los empaques cumplen funciones importantes en el comercio y en los alimentos, y también plantean preguntas sobre materiales, uso y disposición final. Por eso nos interesa ofrecer información que ayude a escoger con criterio, promover el uso responsable de los recursos y explorar alternativas para diferentes necesidades. Cada producto tiene características propias: si buscas una composición o condición ambiental específica, consúltanos para revisar la referencia y su documentación.</p>
+    </div>
+  </section>
+
+  <section class="closing-cta" aria-labelledby="about-cta-title">
+    <div class="container closing-inner">
+      <div><p class="eyebrow"><span class="eyebrow-line"></span> Sigamos conversando</p><h2 id="about-cta-title">Encuentra una opción para lo que hace tu negocio.</h2></div>
+      <div class="closing-actions"><ActionLink href="/#lineas" variant="light">Explorar productos</ActionLink><a class="text-action" href="/#contacto">Hablar con nosotros <ArrowRight size={18} aria-hidden="true" /></a></div>
+    </div>
+  </section>
+</BaseLayout>

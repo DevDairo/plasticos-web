@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import biodegradables from '../assets/lineas/biodegradables.png';
+import desechables from '../assets/lineas/desechables.png';
+import empaquesYBolsas from '../assets/lineas/empaques-y-bolsas.png';
+import cajasParaAlimentos from '../assets/lineas/cajas-para-alimentos.png';
+import cocteleriaYReposteria from '../assets/lineas/cocteleria-y-reposteria.png';
+import botellasYFrascos from '../assets/lineas/botellas-y-frascos.png';
+import { productLines } from '../data/site';
+
+interface Props {
+  line: (typeof productLines)[number];
+}
+
+const { line } = Astro.props;
+const illustrations = {
+  'biodegradables': biodegradables,
+  'desechables': desechables,
+  'empaques-y-bolsas': empaquesYBolsas,
+  'cajas-para-alimentos': cajasParaAlimentos,
+  'cocteleria-y-reposteria': cocteleriaYReposteria,
+  'botellas-y-frascos': botellasYFrascos,
+} as const;
+const illustration = illustrations[line.slug];
+---
+
+<a class="line-illustration-link" href={`/lineas/${line.slug}/`} aria-label={`Conocer ${line.name}`}>
+  <span class="line-illustration-art" aria-hidden="true">
+    <Image src={illustration} alt="" format="webp" quality={80} loading="lazy" decoding="async" />
+  </span>
+  <span class="line-illustration-name">{line.name}</span>
+  <span class="line-illustration-detail">{line.detail}</span>
+</a>

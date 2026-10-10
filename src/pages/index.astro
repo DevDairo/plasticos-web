@@ -1,0 +1,115 @@
+---
+import { ArrowDown, ArrowRight, Leaf, MapPin, Package, Store, Truck } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ActionLink from '../components/ActionLink.astro';
+import LineIllustrationLink from '../components/LineIllustrationLink.astro';
+import ContactSection from '../components/ContactSection.astro';
+import { productLines, whatsappUrl } from '../data/site';
+
+const whatsapp = whatsappUrl('Hola, tengo un negocio y quiero consultar opciones de empaques y productos.');
+const customOrderWhatsapp = whatsappUrl('Hola, quiero consultar por un producto personalizado o sobre pedido para mi negocio.');
+---
+
+<BaseLayout
+  title="Plásticos Santuario | Empaques y soluciones para tu negocio en Caucasia"
+  description="Conoce las líneas de empaques, desechables, bolsas y envases de Plásticos Santuario en Caucasia. Encuentra opciones para tu negocio y contáctanos fácilmente."
+>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> Desde Caucasia, cerca de quienes hacen crecer su negocio</p>
+        <h1 id="hero-title">Lo que necesitas para <span>empacar, servir y presentar mejor.</span></h1>
+        <p class="hero-description">Cada negocio tiene una forma distinta de atender a sus clientes. En Plásticos Santuario Caucasia encuentras empaques, desechables, bolsas, cajas, artículos para bebidas y repostería, botellas y frascos. Explora nuestras opciones y cuéntanos qué buscas: te ayudamos a revisar alternativas para tu actividad.</p>
+        <div class="hero-actions">
+          <ActionLink href="#lineas">Explorar productos</ActionLink>
+          <a class="text-action" href={whatsapp} target="_blank" rel="noopener noreferrer">Hablar con el equipo <ArrowRight size={18} aria-hidden="true" /></a>
+        </div>
+        <div class="hero-proof"><span></span> Desde 2017 acompañando negocios en Caucasia</div>
+      </div>
+      <div class="hero-visual" role="img" aria-label="Composición gráfica de empaques y envases">
+        <span class="hero-orbit hero-orbit--one" aria-hidden="true"></span>
+        <span class="hero-orbit hero-orbit--two" aria-hidden="true"></span>
+        <div class="visual-bag" aria-hidden="true"><span></span></div>
+        <div class="visual-box" aria-hidden="true"><span></span></div>
+        <div class="visual-cup" aria-hidden="true"><span></span></div>
+        <div class="visual-bottle" aria-hidden="true"><span></span></div>
+        <div class="glass-note glass-note--top"><Leaf size={20} aria-hidden="true" /><span>Opciones para<br /><strong>cada negocio</strong></span></div>
+        <div class="glass-note glass-note--bottom"><Package size={20} aria-hidden="true" /><span>Variedad para<br /><strong>elegir mejor</strong></span></div>
+      </div>
+    </div>
+    <div class="container hero-scroll"><a href="#lineas" aria-label="Ir a las líneas de producto"><ArrowDown size={16} aria-hidden="true" /> Descubre lo que ofrecemos</a></div>
+  </section>
+
+  <section class="proof-band" aria-label="Lo que nos caracteriza">
+    <div class="container proof-grid">
+      <a href="/nosotros/"><Store size={22} aria-hidden="true" /><span><strong>Desde Caucasia</strong><small>Conoce nuestra historia</small></span><ArrowRight size={16} aria-hidden="true" /></a>
+      <a href="#lineas"><Package size={22} aria-hidden="true" /><span><strong>Variedad de opciones</strong><small>Seis líneas para explorar</small></span><ArrowRight size={16} aria-hidden="true" /></a>
+      <a href="/cobertura/"><Truck size={22} aria-hidden="true" /><span><strong>Envíos regionales</strong><small>Consulta las zonas disponibles</small></span><ArrowRight size={16} aria-hidden="true" /></a>
+    </div>
+  </section>
+
+  <section class="section home-intro" aria-labelledby="home-intro-title">
+    <div class="container home-intro-grid">
+      <div><p class="eyebrow"><span class="eyebrow-line"></span> Aliados para tu negocio</p><h2 id="home-intro-title">Un aliado para cada momento de tu operación.</h2></div>
+      <p>El empaque protege un producto, facilita su entrega y también hace parte de la experiencia de quien lo recibe. Por eso reunimos opciones para distintas formas de trabajar: servir una bebida, preparar un domicilio, exhibir un postre, empacar mercancía o abastecer un comercio. Dinos qué vendes, cómo lo entregas y qué presentación tienes en mente; así podremos orientarte hacia la línea adecuada.</p>
+    </div>
+  </section>
+
+  <section class="section section-lines" id="lineas" aria-labelledby="lines-title">
+    <div class="container">
+      <div class="section-heading heading-split">
+        <div><p class="eyebrow"><span class="eyebrow-line"></span> Lo que ofrecemos</p><h2 id="lines-title">Seis líneas para distintas formas de crear, vender y servir.</h2></div>
+        <p>Tu negocio puede necesitar un recipiente para un domicilio hoy y una bolsa para entregar mercancía mañana. Empieza por el uso que tienes en mente y explora las familias de nuestro portafolio. Si buscas una referencia, medida o material específico, consúltanos para revisar las opciones disponibles en Caucasia.</p>
+      </div>
+      <div class="line-list-intro">
+        <p class="eyebrow"><span class="eyebrow-line"></span> Explora a tu ritmo</p>
+        <h3>Encuentra una línea para empezar.</h3>
+        <p>Cada categoría reúne ejemplos de productos, usos y aspectos a considerar antes de elegir. Entra en la que más se acerque a tu necesidad.</p>
+      </div>
+      <div class="line-list-note">
+        <h3>¿Tu necesidad cruza varias líneas?</h3>
+        <p>Es normal: una caja de cupcakes también es un empaque de repostería, y una bolsa puede responder a distintos usos. Explora la opción que más se acerque a tu caso o escríbenos para orientarte.</p>
+      </div>
+      <div class="line-illustration-grid">
+        {productLines.map((line) => <LineIllustrationLink line={line} />)}
+      </div>
+      <div class="line-custom-order">
+        <div>
+          <p class="eyebrow"><span class="eyebrow-line"></span> ¿Tienes una necesidad particular?</p>
+          <h3>También puedes preguntar por productos personalizados o sobre pedido.</h3>
+          <p>Cuéntanos qué tipo de empaque o producto buscas. Revisaremos contigo las opciones disponibles.</p>
+        </div>
+        <ActionLink href={customOrderWhatsapp} external>Consultar por WhatsApp</ActionLink>
+      </div>
+    </div>
+  </section>
+
+  <section class="section narrative-section narrative-section--story" aria-labelledby="story-preview-title">
+    <div class="container narrative-grid">
+      <div class="narrative-heading">
+        <p class="eyebrow"><span class="eyebrow-line"></span> Nuestra historia</p>
+        <h2 id="story-preview-title">Nacimos en Caucasia para acompañar a sus negocios.</h2>
+      </div>
+      <div class="narrative-content">
+        <p>Desde 2017, Plásticos Santuario ha crecido junto a personas que emprenden, comercios y negocios de alimentos en Caucasia. Nuestra manera de servir parte de escuchar: entender qué necesitas empacar, cómo presentas tus productos y dónde atiendes a tus clientes. Esa cercanía nos ayuda a convertir una oferta amplia en opciones más fáciles de explorar.</p>
+        <ActionLink href="/nosotros/" variant="secondary">Conoce nuestra historia</ActionLink>
+      </div>
+    </div>
+  </section>
+
+  <section class="section narrative-section narrative-section--coverage" aria-labelledby="coverage-preview-title">
+    <div class="container narrative-grid">
+      <div class="narrative-heading">
+        <p class="eyebrow"><span class="eyebrow-line"></span> Ubicación y cobertura</p>
+        <h2 id="coverage-preview-title">Nuestro punto de partida es Caucasia.</h2>
+      </div>
+      <div class="narrative-content">
+        <p>Puedes visitarnos en Caucasia y consultar envíos a distintas poblaciones de la región. Si tu negocio está en otra ciudad, escríbenos con tu ubicación y los productos que buscas. Revisaremos contigo la disponibilidad y las condiciones aplicables a tu pedido.</p>
+        <p class="narrative-location"><MapPin size={18} aria-hidden="true" /> Visítanos en Caucasia o consulta un envío</p>
+        <ActionLink href="/cobertura/" variant="secondary">Consulta la cobertura</ActionLink>
+      </div>
+    </div>
+  </section>
+
+  <ContactSection />
+</BaseLayout>

@@ -1,0 +1,22 @@
+---
+import { ArrowUpRight } from '@lucide/astro';
+
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'light';
+  external?: boolean;
+  class?: string;
+}
+
+const { href, variant = 'primary', external = false, class: className = '' } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={['action-link', `action-link--${variant}`, className]}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+>
+  <slot />
+  <ArrowUpRight size={17} stroke-width={2} aria-hidden="true" />
+</a>

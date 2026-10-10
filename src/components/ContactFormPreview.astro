@@ -1,0 +1,60 @@
+---
+import { productLines, whatsappUrl } from '../data/site';
+
+const whatsapp = whatsappUrl('Hola, quiero consultar opciones para mi negocio.');
+---
+
+<section class="contact-form-preview" aria-labelledby="contact-form-title">
+  <div class="contact-form-heading">
+    <div>
+      <p class="eyebrow"><span class="eyebrow-line"></span> Próximamente</p>
+      <h3 id="contact-form-title">Deja tu consulta por escrito.</h3>
+      <p id="contact-form-status">Estamos preparando este formulario. Todavía no recibe mensajes; por ahora, puedes escribirnos directamente por <a href={whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp</a>.</p>
+    </div>
+    <span class="contact-form-badge">Vista previa</span>
+  </div>
+
+  <form class="contact-form contact-form-card" aria-describedby="contact-form-status">
+    <fieldset disabled>
+      <legend class="sr-only">Datos para la consulta</legend>
+      <div class="contact-form-fields">
+        <div class="contact-form-field">
+          <label for="contact-name">Nombre <span aria-hidden="true">*</span></label>
+          <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="¿Cómo te llamas?" required />
+        </div>
+        <div class="contact-form-field">
+          <label for="contact-phone">Teléfono o WhatsApp <span aria-hidden="true">*</span></label>
+          <input id="contact-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Tu número de contacto" required />
+        </div>
+        <div class="contact-form-field">
+          <label for="contact-email">Correo electrónico <span class="contact-form-optional">Opcional</span></label>
+          <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="nombre@ejemplo.com" />
+        </div>
+        <div class="contact-form-field">
+          <label for="contact-city">Ciudad o municipio <span aria-hidden="true">*</span></label>
+          <input id="contact-city" name="city" type="text" autocomplete="address-level2" placeholder="¿Dónde te encuentras?" required />
+        </div>
+        <div class="contact-form-field contact-form-field--wide">
+          <label for="contact-line">Línea de interés <span aria-hidden="true">*</span></label>
+          <select id="contact-line" name="line" required>
+            <option value="">Selecciona una opción</option>
+            {productLines.map((line) => <option value={line.slug}>{line.name}</option>)}
+            <option value="orientacion">No estoy seguro; necesito orientación</option>
+          </select>
+        </div>
+        <div class="contact-form-field contact-form-field--wide">
+          <label for="contact-message">Cuéntanos qué necesitas <span aria-hidden="true">*</span></label>
+          <textarea id="contact-message" name="message" rows="5" placeholder="Qué producto buscas, para qué lo usarás y qué cantidad aproximada necesitas" required></textarea>
+        </div>
+      </div>
+      <div class="contact-form-footer">
+        <label class="contact-form-consent" for="contact-consent">
+          <input id="contact-consent" name="consent" type="checkbox" required />
+          <span>Acepto el tratamiento de mis datos personales conforme a la política de tratamiento de datos.</span>
+        </label>
+        <p>La política se enlazará aquí cuando esté aprobada y publicada.</p>
+        <button type="submit" disabled>Enviar consulta</button>
+      </div>
+    </fieldset>
+  </form>
+</section>

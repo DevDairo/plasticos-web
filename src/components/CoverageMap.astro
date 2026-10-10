@@ -1,0 +1,46 @@
+---
+import 'leaflet/dist/leaflet.css';
+---
+
+<div
+  id="coverage-map"
+  class="coverage-map"
+  aria-label="Mapa de Caucasia y las catorce poblaciones indicadas como destinos de envío"
+></div>
+
+<script>
+  import * as L from 'leaflet';
+  import { caucasiaCoveragePoint, coverageDestinations } from '../data/site';
+
+  const container = document.querySelector<HTMLElement>('#coverage-map');
+
+  if (container) {
+    const map = L.map(container, { scrollWheelZoom: false });
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+    }).addTo(map);
+
+    const points = [caucasiaCoveragePoint, ...coverageDestinations];
+    points.forEach((point, index) => {
+      const isOrigin = index === 0;
+      const hasNote = 'note' in point;
+      const marker = L.circleMarker([point.lat, point.lng], {
+        radius: isOrigin ? 10 : 7,
+        color: '#ffffff',
+        weight: 2,
+        fillColor: isOrigin ? '#cf3035' : hasNote ? '#ad741e' : '#176c3e',
+        fillOpacity: 1,
+      }).addTo(map);
+
+      const label = document.createElement('span');
+      label.textContent = `${point.name}${isOrigin ? ' · punto de atención' : ' · destino de envío'}`;
+      marker.bindTooltip(label, { direction: 'top' });
+    });
+
+    map.fitBounds(L.latLngBounds(points.map((point) => [point.lat, point.lng])), {
+      padding: [24, 24],
+      maxZoom: 9,
+    });
+  }
+</script>

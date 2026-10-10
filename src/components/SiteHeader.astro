@@ -1,0 +1,48 @@
+---
+import { Menu, ArrowUpRight } from '@lucide/astro';
+import BrandMark from './BrandMark.astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { whatsappUrl } from '../data/site';
+
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/', label: 'Inicio' },
+  { href: '/#lineas', label: 'Líneas de producto' },
+  { href: '/nosotros/', label: 'Nosotros' },
+  { href: '/cobertura/', label: 'Cobertura' },
+  { href: '/#contacto', label: 'Contacto' },
+];
+const whatsapp = whatsappUrl('Hola, quiero conocer las opciones de Plásticos Santuario.');
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <BrandMark />
+    <nav class="desktop-nav" aria-label="Navegación principal">
+      {nav.map((item) => (
+        <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>
+      ))}
+    </nav>
+    <a class="header-contact" href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Escribir a Plásticos Santuario por WhatsApp">
+      <WhatsAppIcon size={18} />
+      <span>Hablemos por WhatsApp</span>
+      <ArrowUpRight size={16} aria-hidden="true" />
+    </a>
+    <details class="mobile-menu">
+      <summary aria-label="Abrir menú de navegación"><Menu size={24} aria-hidden="true" /></summary>
+      <nav aria-label="Navegación móvil">
+        {nav.map((item) => (
+          <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>
+        ))}
+        <a href={whatsapp} target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<script>
+  const mobileMenu = document.querySelector<HTMLDetailsElement>('.mobile-menu');
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => { mobileMenu.open = false; });
+  });
+</script>

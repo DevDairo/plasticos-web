@@ -1,0 +1,73 @@
+---
+import { ArrowLeft, ArrowRight } from '@lucide/astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ActionLink from '../../components/ActionLink.astro';
+import PageHero from '../../components/PageHero.astro';
+import lineContent from '../../data/lineContent.json';
+import { productLines, whatsappUrl } from '../../data/site';
+
+type LineContent = (typeof lineContent)[number];
+
+interface Props {
+  line: LineContent;
+}
+
+export function getStaticPaths() {
+  return lineContent.map((line) => ({ params: { slug: line.slug }, props: { line } }));
+}
+
+const { line } = Astro.props;
+const currentIndex = productLines.findIndex((item) => item.slug === line.slug);
+if (currentIndex < 0) throw new Error(`La línea ${line.slug} no está registrada en el sitio.`);
+const currentLine = productLines[currentIndex];
+const nextLine = productLines[(currentIndex + 1) % productLines.length];
+const whatsapp = whatsappUrl(`Hola, quiero consultar opciones de ${currentLine.name.toLowerCase()}. Busco ___ para una cantidad aproximada de ___ y me encuentro en ___. ¿Qué precio y disponibilidad tienen?`);
+---
+
+<BaseLayout title={line.seoTitle} description={line.seoDescription}>
+  <PageHero
+    breadcrumb={currentLine.name}
+    parentBreadcrumb={{ label: 'Líneas de producto', href: '/#lineas' }}
+    eyebrow={line.eyebrow}
+    title={line.title}
+    description={line.intro}
+  />
+
+  <section class="section line-detail-section" aria-labelledby="line-detail-title">
+    <div class="container">
+      <div class="line-detail-heading">
+        <p class="eyebrow"><span class="eyebrow-line"></span> Pensado para tu negocio</p>
+        <h2 id="line-detail-title">{line.sectionTitle}</h2>
+      </div>
+      <div class="line-detail-list">
+        {line.blocks.map((block) => (
+          <article class="line-detail-block">
+            <div class="line-detail-block-heading"><h3>{block.title}</h3></div>
+            <p>{block.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section line-detail-closing" aria-labelledby="line-closing-title">
+    <div class="container line-detail-closing-inner">
+      <div>
+        <p class="eyebrow"><span class="eyebrow-line"></span> Hablemos de lo que necesitas</p>
+        <h2 id="line-closing-title">{line.closing}</h2>
+        <p>{line.closingBody}</p>
+      </div>
+      <ActionLink href={whatsapp} external>{line.action}</ActionLink>
+    </div>
+  </section>
+
+  <section class="section line-related-section" aria-labelledby="line-related-title">
+    <div class="container line-related-inner">
+      <h2 id="line-related-title">Sigue explorando</h2>
+      <nav class="line-related-nav" aria-label="Navegación entre líneas de producto">
+        <a href="/#lineas"><ArrowLeft size={17} aria-hidden="true" /><span>Ver todas las categorías</span></a>
+        <a href={`/lineas/${nextLine.slug}/`}><span>Siguiente: {nextLine.name}</span><ArrowRight size={17} aria-hidden="true" /></a>
+      </nav>
+    </div>
+  </section>
+</BaseLayout>

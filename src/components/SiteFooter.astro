@@ -1,0 +1,40 @@
+---
+import { ArrowUpRight, MapPin, Phone } from '@lucide/astro';
+import BrandMark from './BrandMark.astro';
+import { business, whatsappUrl } from '../data/site';
+
+const whatsapp = whatsappUrl('Hola, quisiera información sobre sus productos.');
+---
+
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div class="footer-identity">
+      <BrandMark />
+      <p>Soluciones en empaques y productos para negocios, desde Caucasia.</p>
+    </div>
+    <div>
+      <h2>Explora</h2>
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/#lineas">Líneas de producto</a></li>
+        <li><a href="/nosotros/">Quiénes somos</a></li>
+        <li><a href="/cobertura/">Ubicación y cobertura</a></li>
+        <li><a href="/#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Encuéntranos</h2>
+      <ul class="footer-contact-list">
+        <li><MapPin size={17} aria-hidden="true" /><span>{business.address}</span></li>
+        <li><Phone size={17} aria-hidden="true" /><a href={`tel:+${business.whatsapp}`}>{business.phoneDisplay}</a></li>
+      </ul>
+      <a class="footer-whatsapp" href={whatsapp} target="_blank" rel="noopener noreferrer">
+        Escríbenos por WhatsApp <ArrowUpRight size={16} aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© {new Date().getFullYear()} Plásticos Santuario</span>
+    <span>{business.tagline}</span>
+  </div>
+</footer>

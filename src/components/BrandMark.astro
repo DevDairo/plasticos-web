@@ -1,0 +1,13 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../logo-icono.png';
+import { business } from '../data/site';
+---
+
+<a class="brand-link" href="/" aria-label="Plásticos Santuario, ir al inicio">
+  <Image src={logo} alt="" width={48} height={48} class="brand-logo" />
+  <span class="brand-copy">
+    <strong>{business.name}</strong>
+    <small>{business.tagline}</small>
+  </span>
+</a>
