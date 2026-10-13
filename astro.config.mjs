@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  trailingSlash: 'always',
+  trailingSlash: 'ignore',
   redirects: {
     '/lineas/': '/#lineas',
   },

@@ -6,6 +6,7 @@ export const business = {
   address: 'Carrera 20 # 28-00, Caucasia, Antioquia',
   socialHandle: '@plasticossantuariocaucasia',
   instagramUrl: 'https://www.instagram.com/plasticossantuariocaucasia/',
+  facebookUrl: 'https://www.facebook.com/plasticossantuario',
   hours: [
     { days: 'Lunes a sábado', time: '7:00 a. m. – 6:00 p. m.', note: 'Jornada continua' },
     { days: 'Domingos', time: '7:00 a. m. – 12:00 m.' },
@@ -17,6 +18,7 @@ export function whatsappUrl(message: string): string {
 }
 
 export const caucasiaMapEmbedUrl = 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5000!2d-75.1996654!3d7.9934257!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e5b6f564b6cb921%3A0x2533766073b22eca!2sPl%C3%A1sticos%20Santuario!5e0!3m2!1ses-419!2sco!4v1791506184610!5m2!1ses-419!2sco';
+export const coverageMapEmbedUrl = 'https://www.google.com/maps/d/u/2/embed?mid=1l7hSRndha09nL8mroC82xcuMnD1RFdI&ehbc=2E312F&ll=7.7688847%2C-75.1788438&z=9';
 
 export const productLines = [
   {

@@ -1,8 +1,16 @@
 ---
+import type { ImageMetadata } from 'astro';
 import { ArrowLeft, ArrowRight } from '@lucide/astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ActionLink from '../../components/ActionLink.astro';
 import PageHero from '../../components/PageHero.astro';
+import ProofBand from '../../components/ProofBand.astro';
+import biodegradableFeature from '../../assets/lineas/biodegradables-hero-cutout.png';
+import disposableFeature from '../../assets/lineas/desechables-hero-cutout.png';
+import packagingFeature from '../../assets/lineas/empaques-y-bolsas-hero-cutout.png';
+import foodBoxesFeature from '../../assets/lineas/cajas-para-alimentos-hero-cutout.png';
+import cocktailsFeature from '../../assets/lineas/cocteleria-y-reposteria-hero-cutout.png';
+import bottlesFeature from '../../assets/lineas/botellas-y-frascos-hero-cutout.png';
 import lineContent from '../../data/lineContent.json';
 import { productLines, whatsappUrl } from '../../data/site';
 
@@ -22,6 +30,39 @@ if (currentIndex < 0) throw new Error(`La línea ${line.slug} no está registrad
 const currentLine = productLines[currentIndex];
 const nextLine = productLines[(currentIndex + 1) % productLines.length];
 const whatsapp = whatsappUrl(`Hola, quiero consultar opciones de ${currentLine.name.toLowerCase()}. Busco ___ para una cantidad aproximada de ___ y me encuentro en ___. ¿Qué precio y disponibilidad tienen?`);
+const heroMediaBySlug: Record<string, { image: ImageMetadata; alt: string; theme: 'eco' | 'service' | 'packaging' | 'food-boxes' | 'cocktails' | 'bottles' }> = {
+  biodegradables: {
+    image: biodegradableFeature,
+    alt: 'Mascota de Plásticos Santuario junto a platos, ensalada y cubiertos sobre una toalla verde y una tabla de madera',
+    theme: 'eco',
+  },
+  desechables: {
+    image: disposableFeature,
+    alt: 'Mascota de Plásticos Santuario con portacomidas, vaso de bebida, envases de fruta, vasos, servilletas y cubiertos desechables',
+    theme: 'service',
+  },
+  'empaques-y-bolsas': {
+    image: packagingFeature,
+    alt: 'Mascota de Plásticos Santuario con bolsas de papel kraft, bolsa plástica y empaques para alimentos',
+    theme: 'packaging',
+  },
+  'cajas-para-alimentos': {
+    image: foodBoxesFeature,
+    alt: 'Mascota de Plásticos Santuario junto a una caja kraft abierta con hamburguesa y papas, una caja blanca y un recipiente para ensalada',
+    theme: 'food-boxes',
+  },
+  'cocteleria-y-reposteria': {
+    image: cocktailsFeature,
+    alt: 'Mascota de Plásticos Santuario entre una bebida cítrica, postres en vasos transparentes y una manga pastelera',
+    theme: 'cocktails',
+  },
+  'botellas-y-frascos': {
+    image: bottlesFeature,
+    alt: 'Mascota de Plásticos Santuario entre botellas plásticas transparentes y frascos de vidrio con tapas doradas',
+    theme: 'bottles',
+  },
+};
+const heroMedia = heroMediaBySlug[line.slug];
 ---
 
 <BaseLayout title={line.seoTitle} description={line.seoDescription}>
@@ -31,7 +72,16 @@ const whatsapp = whatsappUrl(`Hola, quiero consultar opciones de ${currentLine.n
     eyebrow={line.eyebrow}
     title={line.title}
     description={line.intro}
+    backgroundImage={heroMedia?.image}
+    backgroundImageAlt={heroMedia?.alt}
+    mediaTheme={heroMedia?.theme}
   />
+
+  <ProofBand label={`Accesos útiles para ${currentLine.name}`} items={[
+    { href: whatsapp, title: `Consultar ${currentLine.name}`, detail: 'Precio y disponibilidad', icon: 'message', external: true },
+    { href: '/#lineas', title: 'Todas las líneas', detail: 'Explora otras opciones', icon: 'package' },
+    { href: '/cobertura/', title: 'Envíos regionales', detail: 'Consulta los destinos', icon: 'truck' },
+  ]} />
 
   <section class="section line-detail-section" aria-labelledby="line-detail-title">
     <div class="container">

@@ -1,0 +1,101 @@
+---
+import { ArrowLeft } from '@lucide/astro';
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import mascot from '../assets/mascota-404-taburete.png';
+---
+
+<BaseLayout
+  title="Página en mantenimiento | Plásticos Santuario"
+  description="Estamos trabajando en esta página. Vuelve a Plásticos Santuario para seguir explorando."
+>
+  <section class="not-found" aria-labelledby="not-found-title">
+    <div class="container not-found-content">
+      <div class="not-found-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span>Estamos trabajando</p>
+        <h1 id="not-found-title">Página en mantenimiento.</h1>
+        <p class="not-found-message">Estamos preparando este espacio para ti. Mientras tanto, vuelve a la página anterior y continúa explorando nuestras líneas de productos.</p>
+      </div>
+      <Image
+        class="not-found-mascot"
+        src={mascot}
+        width={360}
+        format="webp"
+        alt="Mascota de Plásticos Santuario trabajando en un portátil"
+      />
+      <button class="action-link action-link--primary" id="go-back" type="button">
+        <ArrowLeft size={17} stroke-width={2} aria-hidden="true" />
+        Volver atrás
+      </button>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelector<HTMLButtonElement>('#go-back')?.addEventListener('click', () => {
+    const cameFromThisSite = document.referrer && new URL(document.referrer).origin === window.location.origin;
+
+    if (cameFromThisSite) {
+      window.history.back();
+    } else {
+      window.location.assign('/');
+    }
+  });
+</script>
+
+<style>
+  .not-found {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    min-height: min(650px, calc(100svh - 82px));
+    padding: 72px 0;
+    background: #fff;
+  }
+
+  .not-found-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(250px, 360px);
+    align-items: center;
+    column-gap: clamp(32px, 5vw, 80px);
+    row-gap: 28px;
+    max-width: 1080px;
+  }
+
+  .not-found-copy { grid-column: 1; grid-row: 1; align-self: end; }
+
+  .not-found-mascot { display: block; grid-column: 2; grid-row: 1 / 3; width: 100%; height: auto; }
+
+  h1 {
+    margin: 20px 0 18px;
+    color: var(--color-forest);
+    font-family: var(--font-display);
+    font-size: clamp(48px, 5.5vw, 70px);
+    font-weight: 800;
+    letter-spacing: -.055em;
+    line-height: 1.06;
+  }
+
+  .not-found-message {
+    max-width: 620px;
+    margin: 0;
+    color: var(--muted);
+    font-size: clamp(16px, 1.6vw, 19px);
+    line-height: 1.7;
+  }
+
+  button { grid-column: 1; grid-row: 2; justify-self: start; align-self: start; cursor: pointer; }
+
+  button svg { transition: transform .28s var(--ease); }
+
+  button:hover svg { transform: translateX(-3px); }
+
+  @media (max-width: 540px) {
+    .not-found { min-height: calc(100svh - 82px); padding: 64px 0; }
+    .not-found-content { grid-template-columns: 1fr; row-gap: 22px; text-align: center; }
+    .not-found-copy { grid-column: 1; grid-row: 1; }
+    .not-found-mascot { grid-column: 1; grid-row: 2; max-width: 270px; margin-inline: auto; }
+    button { grid-column: 1; grid-row: 3; justify-self: center; }
+    .eyebrow { justify-content: center; }
+  }
+</style>

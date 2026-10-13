@@ -1,10 +1,13 @@
 ---
-import { ArrowDown, ArrowRight, Leaf, MapPin, Package, Store, Truck } from '@lucide/astro';
+import { ArrowDown, ArrowRight, Leaf, MapPin, Package } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ActionLink from '../components/ActionLink.astro';
 import LineIllustrationLink from '../components/LineIllustrationLink.astro';
 import ContactSection from '../components/ContactSection.astro';
-import { productLines, whatsappUrl } from '../data/site';
+import ProofBand from '../components/ProofBand.astro';
+import InstagramIcon from '../components/InstagramIcon.astro';
+import FacebookIcon from '../components/FacebookIcon.astro';
+import { business, productLines, whatsappUrl } from '../data/site';
 
 const whatsapp = whatsappUrl('Hola, tengo un negocio y quiero consultar opciones de empaques y productos.');
 const customOrderWhatsapp = whatsappUrl('Hola, quiero consultar por un producto personalizado o sobre pedido para mi negocio.');
@@ -40,13 +43,11 @@ const customOrderWhatsapp = whatsappUrl('Hola, quiero consultar por un producto 
     <div class="container hero-scroll"><a href="#lineas" aria-label="Ir a las líneas de producto"><ArrowDown size={16} aria-hidden="true" /> Descubre lo que ofrecemos</a></div>
   </section>
 
-  <section class="proof-band" aria-label="Lo que nos caracteriza">
-    <div class="container proof-grid">
-      <a href="/nosotros/"><Store size={22} aria-hidden="true" /><span><strong>Desde Caucasia</strong><small>Conoce nuestra historia</small></span><ArrowRight size={16} aria-hidden="true" /></a>
-      <a href="#lineas"><Package size={22} aria-hidden="true" /><span><strong>Variedad de opciones</strong><small>Seis líneas para explorar</small></span><ArrowRight size={16} aria-hidden="true" /></a>
-      <a href="/cobertura/"><Truck size={22} aria-hidden="true" /><span><strong>Envíos regionales</strong><small>Consulta las zonas disponibles</small></span><ArrowRight size={16} aria-hidden="true" /></a>
-    </div>
-  </section>
+  <ProofBand label="Lo que nos caracteriza" items={[
+    { href: '/nosotros/', title: 'Desde Caucasia', detail: 'Conoce nuestra historia', icon: 'store' },
+    { href: '#lineas', title: 'Variedad de opciones', detail: 'Seis líneas para explorar', icon: 'package' },
+    { href: '/cobertura/', title: 'Envíos regionales', detail: 'Consulta las zonas disponibles', icon: 'truck' },
+  ]} />
 
   <section class="section home-intro" aria-labelledby="home-intro-title">
     <div class="container home-intro-grid">
@@ -55,24 +56,16 @@ const customOrderWhatsapp = whatsappUrl('Hola, quiero consultar por un producto 
     </div>
   </section>
 
-  <section class="section section-lines" id="lineas" aria-labelledby="lines-title">
+  <section class="section section-lines" aria-labelledby="lines-title">
     <div class="container">
       <div class="section-heading heading-split">
         <div><p class="eyebrow"><span class="eyebrow-line"></span> Lo que ofrecemos</p><h2 id="lines-title">Seis líneas para distintas formas de crear, vender y servir.</h2></div>
         <p>Tu negocio puede necesitar un recipiente para un domicilio hoy y una bolsa para entregar mercancía mañana. Empieza por el uso que tienes en mente y explora las familias de nuestro portafolio. Si buscas una referencia, medida o material específico, consúltanos para revisar las opciones disponibles en Caucasia.</p>
       </div>
-      <div class="line-list-intro">
-        <p class="eyebrow"><span class="eyebrow-line"></span> Explora a tu ritmo</p>
-        <h3>Encuentra una línea para empezar.</h3>
-        <p>Cada categoría reúne ejemplos de productos, usos y aspectos a considerar antes de elegir. Entra en la que más se acerque a tu necesidad.</p>
-      </div>
-      <div class="line-list-note">
-        <h3>¿Tu necesidad cruza varias líneas?</h3>
-        <p>Es normal: una caja de cupcakes también es un empaque de repostería, y una bolsa puede responder a distintos usos. Explora la opción que más se acerque a tu caso o escríbenos para orientarte.</p>
-      </div>
-      <div class="line-illustration-grid">
+      <div class="line-illustration-grid" id="lineas">
         {productLines.map((line) => <LineIllustrationLink line={line} />)}
       </div>
+      <p class="line-list-note"><strong>¿Tu necesidad cruza varias líneas?</strong> Es normal: una caja de cupcakes también es un empaque de repostería, y una bolsa puede responder a distintos usos. Explora la opción que más se acerque a tu caso o escríbenos para orientarte.</p>
       <div class="line-custom-order">
         <div>
           <p class="eyebrow"><span class="eyebrow-line"></span> ¿Tienes una necesidad particular?</p>
@@ -111,5 +104,68 @@ const customOrderWhatsapp = whatsappUrl('Hola, quiero consultar por un producto 
     </div>
   </section>
 
+  <section class="home-social" aria-labelledby="home-social-title">
+    <div class="container home-social-inner">
+      <h2 id="home-social-title">Síguenos en nuestras redes.</h2>
+      <ul class="home-social-links">
+        <li><a href={business.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Visitar Instagram de Plásticos Santuario"><InstagramIcon size={25} /><span>Instagram</span></a></li>
+        <li><a href={business.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Visitar Facebook de Plásticos Santuario"><FacebookIcon size={25} /><span>Facebook</span></a></li>
+      </ul>
+    </div>
+  </section>
+
   <ContactSection />
 </BaseLayout>
+
+<style>
+  .home-social { padding: 28px 0 20px; background: #fff; }
+
+  .home-social-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    max-width: 1100px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+
+  h2 {
+    margin: 0;
+    color: var(--color-forest);
+    font-family: var(--font-display);
+    font-size: clamp(28px, 2.8vw, 37px);
+    font-weight: 800;
+    letter-spacing: -.045em;
+    line-height: 1.15;
+  }
+
+  .home-social-links { display: flex; flex-wrap: wrap; gap: 13px; margin: 0; padding: 0; list-style: none; }
+
+  .home-social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    min-height: 58px;
+    padding: 0 20px;
+    border: 1px solid #d8e5d7;
+    border-radius: 16px;
+    color: var(--color-forest);
+    font-size: 15px;
+    font-weight: 850;
+    text-decoration: none;
+    transition: border-color .2s ease, transform .25s var(--ease), box-shadow .25s ease;
+  }
+
+  .home-social-links a:hover { transform: translateY(-3px); border-color: var(--color-green); box-shadow: 0 10px 24px #174e2b15; }
+  .home-social-links svg { flex: none; color: var(--color-green); }
+
+  @media (max-width: 760px) {
+    .home-social { padding: 22px 0 16px; }
+    .home-social-inner { align-items: flex-start; flex-direction: column; gap: 20px; padding-top: 26px; }
+    .home-social-links { width: 100%; }
+    .home-social-links li { flex: 1 1 130px; }
+    .home-social-links a { width: 100%; }
+  }
+</style>

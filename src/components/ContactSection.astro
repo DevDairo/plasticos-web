@@ -2,9 +2,7 @@
 import { ArrowUpRight, Clock3, MapPin } from '@lucide/astro';
 import ActionLink from './ActionLink.astro';
 import ContactFormPreview from './ContactFormPreview.astro';
-import InstagramIcon from './InstagramIcon.astro';
 import MapEmbed from './MapEmbed.astro';
-import WhatsAppIcon from './WhatsAppIcon.astro';
 import { business, caucasiaMapEmbedUrl, whatsappUrl } from '../data/site';
 
 const whatsapp = whatsappUrl('Hola, soy de [ciudad]. Busco [producto o familia] para [uso]. Necesito aproximadamente [cantidad] y quisiera consultar opciones y disponibilidad en Caucasia.');
@@ -21,26 +19,16 @@ const whatsapp = whatsappUrl('Hola, soy de [ciudad]. Busco [producto o familia] 
 
     <ContactFormPreview />
   </div>
-  <div class="container contact-details">
-    <h2>También puedes encontrarnos aquí.</h2>
-    <div class="contact-details-grid">
-      <div class="contact-detail"><span class="contact-detail-icon"><WhatsAppIcon size={22} /></span><div><h3>WhatsApp</h3><a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={`Escribir por WhatsApp al ${business.phoneDisplay}`}>Escríbenos</a></div></div>
-      <div class="contact-detail contact-detail--social">
-        <span class="contact-detail-icon contact-detail-icon--instagram"><InstagramIcon size={22} /></span>
-        <div>
-          <h3>Síguenos en Instagram</h3>
-          <a class="contact-instagram-link" href={business.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Visitar el perfil de Plásticos Santuario en Instagram">Visitar perfil <ArrowUpRight size={15} aria-hidden="true" /></a>
-        </div>
-      </div>
-      <div class="contact-detail contact-detail--hours"><span class="contact-detail-icon"><Clock3 size={22} aria-hidden="true" /></span><div><h3>Horario de atención</h3><ul class="hours-list">{business.hours.map((schedule) => <li><strong>{schedule.days}</strong><span>{schedule.time}</span>{'note' in schedule && <small>{schedule.note}</small>}</li>)}</ul></div></div>
-    </div>
-  </div>
   <div class="container contact-visit">
     <div class="contact-visit-copy">
       <p class="eyebrow"><span class="eyebrow-line"></span> Encuéntranos</p>
       <h3>Visítanos en Caucasia.</h3>
       <p class="contact-address"><MapPin size={20} aria-hidden="true" />{business.address}</p>
-      <p>Si prefieres conversar en persona, visítanos en Caucasia. Verifica el horario de atención y la ubicación antes de venir, especialmente si buscas un producto o variante específica.</p>
+      <div class="contact-visit-hours">
+        <Clock3 size={20} aria-hidden="true" />
+        <div><h4>Horario de atención</h4><ul class="hours-list">{business.hours.map((schedule) => <li><strong>{schedule.days}</strong><span>{schedule.time}</span>{'note' in schedule && <small>{schedule.note}</small>}</li>)}</ul></div>
+      </div>
+      <p>Si buscas un producto o variante específica, consulta su disponibilidad antes de venir.</p>
       <div class="contact-location-actions"><a href="/cobertura/">Consultar cobertura <ArrowUpRight size={17} aria-hidden="true" /></a></div>
     </div>
     <div class="contact-visit-map"><MapEmbed src={caucasiaMapEmbedUrl} title="Ubicación de Plásticos Santuario en Caucasia en Google Maps" /></div>

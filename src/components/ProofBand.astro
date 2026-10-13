@@ -1,0 +1,54 @@
+---
+import { ArrowRight, MapPin, MessageCircle, Package, Store, Truck } from '@lucide/astro';
+
+type BandIcon = 'store' | 'package' | 'truck' | 'map' | 'message';
+
+interface BandItem {
+  href: string;
+  title: string;
+  detail: string;
+  icon: BandIcon;
+  external?: boolean;
+}
+
+interface Props {
+  label: string;
+  items: [BandItem, BandItem, BandItem];
+}
+
+const { label, items } = Astro.props;
+const icons = { store: Store, package: Package, truck: Truck, map: MapPin, message: MessageCircle };
+---
+
+<section class="proof-band" aria-label={label}>
+  <div class="container proof-grid">
+    {items.map((item) => {
+      const Icon = icons[item.icon];
+      return (
+        <a href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined}>
+          <Icon size={22} aria-hidden="true" />
+          <span><strong>{item.title}</strong><small>{item.detail}</small></span>
+          <ArrowRight size={16} aria-hidden="true" />
+        </a>
+      );
+    })}
+  </div>
+</section>
+
+<script>
+  if ('IntersectionObserver' in window && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.remove('is-pending');
+        observer.unobserve(entry.target);
+      }
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll<HTMLElement>('.proof-band').forEach((band) => {
+      if (band.getBoundingClientRect().top < window.innerHeight) return;
+      band.classList.add('is-pending');
+      observer.observe(band);
+    });
+  }
+</script>

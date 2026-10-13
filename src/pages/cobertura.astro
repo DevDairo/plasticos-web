@@ -1,55 +1,55 @@
 ---
-import { MapPin, MessageCircle } from '@lucide/astro';
+import { MapPin } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ActionLink from '../components/ActionLink.astro';
-import CoverageMap from '../components/CoverageMap.astro';
+import MapEmbed from '../components/MapEmbed.astro';
 import PageHero from '../components/PageHero.astro';
-import { business, coverageDestinations, whatsappUrl } from '../data/site';
+import ProofBand from '../components/ProofBand.astro';
+import { coverageMapEmbedUrl, coverageDestinations, whatsappUrl } from '../data/site';
 
 const whatsapp = whatsappUrl('Hola, quisiera consultar un envío y la disponibilidad de productos para mi ubicación.');
 ---
 
 <BaseLayout
   title="Ubicación y cobertura | Plásticos Santuario"
-  description="Plásticos Santuario atiende en Caucasia y realiza envíos a distintas poblaciones de la región. Consulta opciones de envío para otras ciudades por WhatsApp."
+  description="Visita el punto principal de Plásticos Santuario en Caucasia y conoce los destinos de envío. Si estás en otra parte del país, consúltanos por WhatsApp."
 >
   <PageHero
     breadcrumb="Ubicación y cobertura"
     eyebrow="Ubicación y cobertura"
-    title="En Caucasia está nuestro punto de encuentro"
-    accent="con tu negocio."
-    description="Desde Caucasia atendemos a quienes necesitan empaques y productos para su actividad diaria. Puedes visitarnos, contarnos qué buscas y consultar un envío si te encuentras en otra población. Revisamos contigo los productos, la cantidad y la ubicación antes de confirmar una entrega."
+    title="Más cerca de tu negocio,"
+    accent="desde Caucasia."
+    description="Te esperamos para conocer lo que necesitas, mostrarte nuestras líneas de productos y ayudarte a elegir opciones para tu negocio. Si te encuentras en otra población, también puedes consultar nuestros destinos de envío."
   />
+
+  <ProofBand label="Accesos de ubicación y cobertura" items={[
+    { href: '#explorar-cobertura', title: 'Punto principal', detail: 'Visítanos en Caucasia', icon: 'store' },
+    { href: '#destinations-title', title: 'Destinos de envío', detail: 'Conoce las poblaciones', icon: 'truck' },
+    { href: whatsapp, title: '¿Estás en otra ciudad?', detail: 'Escríbenos por WhatsApp', icon: 'message', external: true },
+  ]} />
 
   <section class="section coverage-section" id="explorar-cobertura" aria-labelledby="coverage-title">
     <div class="container">
-      <div class="coverage-main-grid">
-        <div class="coverage-map-wrap">
-          <div class="coverage-map-label"><span class="eyebrow-line"></span><strong>Mapa de cobertura</strong><span>Caucasia y destinos indicados</span></div>
-          <CoverageMap />
-          <div class="coverage-map-legend"><span><i class="legend-dot legend-dot--origin"></i> Punto de atención</span><span><i class="legend-dot legend-dot--destination"></i> Destino de envío</span><span><i class="legend-dot legend-dot--provisional"></i> Referencia por confirmar</span></div>
-        </div>
-        <div class="coverage-intro">
-          <p class="eyebrow"><span class="eyebrow-line"></span> Punto de atención</p>
-          <h2 id="coverage-title">Nuestro punto de atención está en Caucasia.</h2>
-          <div class="location-card"><MapPin size={25} aria-hidden="true" /><div><strong>Visítanos</strong><p>{business.address}</p></div></div>
-          <p>El mapa señala Caucasia como punto de atención y muestra las poblaciones indicadas por el negocio como destinos de envío. Los marcadores son referencias geográficas para orientarte; no representan sucursales ni puntos fijos de recogida.</p>
-          <p>¿Tu negocio está fuera de los lugares señalados? También puedes escribirnos desde otra ciudad. Compártenos el destino, los productos de interés y la cantidad aproximada; revisaremos las opciones y condiciones aplicables a tu pedido.</p>
-          <ActionLink href={whatsapp} external>Consultar un envío</ActionLink>
-        </div>
+      <div class="coverage-intro">
+        <p class="eyebrow"><span class="eyebrow-line"></span> Visítanos en Caucasia</p>
+        <h2 id="coverage-title">Nuestro punto principal está en Caucasia.</h2>
+        <p>Visítanos para descubrir opciones de empaques, desechables y productos complementarios pensadas para distintas formas de vender, servir y entregar. Cuéntanos cómo funciona tu negocio, qué producto quieres presentar y qué cantidad necesitas: podremos mostrarte formatos, comparar alternativas y ayudarte a encontrar una opción que se ajuste a tu día a día. Si ya tienes una referencia en mente, tráela o descríbenosla; estaremos encantados de revisar contigo las opciones disponibles.</p>
       </div>
 
       <div class="coverage-destinations" aria-labelledby="destinations-title">
-        <div><p class="eyebrow"><span class="eyebrow-line"></span> Envíos regionales</p><h3 id="destinations-title">Poblaciones indicadas por el negocio</h3><p>Estas referencias no limitan las consultas desde otras ciudades. Cada pedido y destino pueden tener condiciones distintas: confirma con el equipo la disponibilidad y las condiciones de entrega.</p></div>
+        <div><p class="eyebrow"><span class="eyebrow-line"></span> Destinos de envío</p><h3 id="destinations-title">También enviamos a estas poblaciones.</h3><p>Si tu negocio está en alguno de estos destinos, escríbenos para consultar los productos disponibles y las condiciones de entrega de tu pedido.</p></div>
         <ul class="coverage-destination-list">
           {coverageDestinations.map((destination) => <li><MapPin size={15} aria-hidden="true" />{destination.name}</li>)}
         </ul>
       </div>
-      <p class="coverage-map-note">Las referencias de Jardín y Puerto Clavel requieren confirmar su ubicación exacta con el negocio; se muestran provisionalmente en el sector Jardín de Cáceres y en Puerto Claver de El Bagre.</p>
+      <div class="coverage-map-wrap">
+        <div class="coverage-map-label"><span class="eyebrow-line"></span><strong>Punto principal y destinos de envío</strong><span>Rojo: atención en Caucasia · Azul: destinos de envío</span></div>
+        <MapEmbed src={coverageMapEmbedUrl} title="Mapa de Plásticos Santuario con el punto principal en Caucasia y catorce destinos de envío" />
+      </div>
+      <div class="coverage-other">
+        <p>¿Te encuentras en otro lugar del país? Cuéntanos dónde estás, qué productos buscas y la cantidad aproximada. Presiona el botón para consultar las opciones de envío disponibles.</p>
+        <ActionLink href={whatsapp} external>Consultar por WhatsApp</ActionLink>
+      </div>
     </div>
-  </section>
-
-  <section class="coverage-cta" aria-labelledby="coverage-cta-title">
-    <div class="container coverage-cta-inner"><MessageCircle size={33} aria-hidden="true" /><div><h2 id="coverage-cta-title">En Caucasia o desde otra población, conversemos.</h2><p>Cuéntanos dónde estás, qué productos buscas y la cantidad aproximada para revisar tu solicitud.</p></div><ActionLink href={whatsapp} variant="light" external>Consultar un envío</ActionLink></div>
   </section>
 </BaseLayout>

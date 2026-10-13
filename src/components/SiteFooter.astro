@@ -1,6 +1,8 @@
 ---
-import { ArrowUpRight, MapPin, Phone } from '@lucide/astro';
 import BrandMark from './BrandMark.astro';
+import FacebookIcon from './FacebookIcon.astro';
+import InstagramIcon from './InstagramIcon.astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
 import { business, whatsappUrl } from '../data/site';
 
 const whatsapp = whatsappUrl('Hola, quisiera información sobre sus productos.');
@@ -23,14 +25,12 @@ const whatsapp = whatsappUrl('Hola, quisiera información sobre sus productos.')
       </ul>
     </div>
     <div>
-      <h2>Encuéntranos</h2>
-      <ul class="footer-contact-list">
-        <li><MapPin size={17} aria-hidden="true" /><span>{business.address}</span></li>
-        <li><Phone size={17} aria-hidden="true" /><a href={`tel:+${business.whatsapp}`}>{business.phoneDisplay}</a></li>
+      <h2>Nuestras redes</h2>
+      <ul class="footer-social-list">
+        <li><a href={business.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Visitar Instagram de Plásticos Santuario"><InstagramIcon size={18} />Instagram</a></li>
+        <li><a href={business.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Visitar Facebook de Plásticos Santuario"><FacebookIcon size={18} />Facebook</a></li>
+        <li><a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Escribir a Plásticos Santuario por WhatsApp"><WhatsAppIcon size={18} />WhatsApp</a></li>
       </ul>
-      <a class="footer-whatsapp" href={whatsapp} target="_blank" rel="noopener noreferrer">
-        Escríbenos por WhatsApp <ArrowUpRight size={16} aria-hidden="true" />
-      </a>
     </div>
   </div>
   <div class="container footer-bottom">

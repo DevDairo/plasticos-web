@@ -1,8 +1,13 @@
 ---
 import { ArrowRight, Boxes, Handshake, Info } from '@lucide/astro';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ActionLink from '../components/ActionLink.astro';
 import PageHero from '../components/PageHero.astro';
+import ProofBand from '../components/ProofBand.astro';
+import usoConsciente from '../assets/nosotros/uso-consciente-mascota.png';
+import disposicionResponsable from '../assets/nosotros/disposicion-responsable-mascota.png';
+import eleccionInformada from '../assets/nosotros/eleccion-informada-mascota.png';
 ---
 
 <BaseLayout
@@ -16,6 +21,12 @@ import PageHero from '../components/PageHero.astro';
     accent="en Caucasia."
     description="Desde 2017 acompañamos a personas emprendedoras, tiendas, negocios de alimentos y comercios que necesitan productos para servir, empacar y entregar cada día."
   />
+
+  <ProofBand label="Explora Plásticos Santuario" items={[
+    { href: '#story-title', title: 'Nuestra historia', detail: 'Desde 2017 en Caucasia', icon: 'store' },
+    { href: '/#lineas', title: 'Seis líneas', detail: 'Conoce nuestras opciones', icon: 'package' },
+    { href: '/cobertura/', title: 'Ubicación y cobertura', detail: 'Visítanos o consulta envíos', icon: 'map' },
+  ]} />
 
   <section class="section story-section" aria-labelledby="story-title">
     <div class="container story-grid">
@@ -44,6 +55,18 @@ import PageHero from '../components/PageHero.astro';
     </div>
   </section>
 
+  <section class="section commitment-section" aria-labelledby="commitment-title">
+    <div class="container commitment-grid">
+      <div><p class="eyebrow"><span class="eyebrow-line"></span> Compromiso ambiental</p><h2 id="commitment-title">Nuestro compromiso con el medio ambiente.</h2></div>
+      <p>En Plásticos Santuario queremos ayudar a nuestros clientes a elegir y utilizar sus empaques de manera responsable. Por eso promovemos el uso consciente de los recursos, la correcta disposición de los productos y la búsqueda de alternativas que respondan a cada necesidad. Las características ambientales pueden variar entre referencias: si buscas un material o una forma de disposición específica, consúltanos para revisar la información del producto antes de elegir.</p>
+      <ul class="commitment-values" aria-label="Ejes de nuestro compromiso ambiental">
+        <li><Image src={usoConsciente} width={400} format="webp" loading="lazy" alt="" /><span>Uso consciente</span></li>
+        <li><Image src={disposicionResponsable} width={400} format="webp" loading="lazy" alt="" /><span>Disposición responsable</span></li>
+        <li><Image src={eleccionInformada} width={400} format="webp" loading="lazy" alt="" /><span>Elección informada</span></li>
+      </ul>
+    </div>
+  </section>
+
   <section class="section reasons-section" aria-labelledby="reasons-title">
     <div class="container">
       <div class="section-heading"><p class="eyebrow"><span class="eyebrow-line"></span> Nuestro servicio</p><h2 id="reasons-title">Lo que orienta cada conversación.</h2></div>
@@ -55,17 +78,10 @@ import PageHero from '../components/PageHero.astro';
     </div>
   </section>
 
-  <section class="section commitment-section" aria-labelledby="commitment-title">
-    <div class="container commitment-grid">
-      <div><p class="eyebrow"><span class="eyebrow-line"></span> Compromiso con el entorno</p><h2 id="commitment-title">Elegir mejor también exige información clara.</h2></div>
-      <p>Los empaques cumplen funciones importantes en el comercio y en los alimentos, y también plantean preguntas sobre materiales, uso y disposición final. Por eso nos interesa ofrecer información que ayude a escoger con criterio, promover el uso responsable de los recursos y explorar alternativas para diferentes necesidades. Cada producto tiene características propias: si buscas una composición o condición ambiental específica, consúltanos para revisar la referencia y su documentación.</p>
-    </div>
-  </section>
-
   <section class="closing-cta" aria-labelledby="about-cta-title">
     <div class="container closing-inner">
       <div><p class="eyebrow"><span class="eyebrow-line"></span> Sigamos conversando</p><h2 id="about-cta-title">Encuentra una opción para lo que hace tu negocio.</h2></div>
-      <div class="closing-actions"><ActionLink href="/#lineas" variant="light">Explorar productos</ActionLink><a class="text-action" href="/#contacto">Hablar con nosotros <ArrowRight size={18} aria-hidden="true" /></a></div>
+      <div class="closing-actions"><ActionLink href="/#lineas">Explorar productos</ActionLink><a class="text-action" href="/#contacto">Hablar con nosotros <ArrowRight size={18} aria-hidden="true" /></a></div>
     </div>
   </section>
 </BaseLayout>

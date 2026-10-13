@@ -30,7 +30,8 @@ const { title, description } = Astro.props;
     <main id="contenido"><slot /></main>
     <SiteFooter />
     <a class="floating-whatsapp" href={whatsappUrl('Hola, quiero conocer los productos de Plásticos Santuario.')} target="_blank" rel="noopener noreferrer" aria-label="Escribir a Plásticos Santuario por WhatsApp">
-      <WhatsAppIcon size={25} />
+      <WhatsAppIcon size={29} />
     </a>
+    <script>import '../scripts/siteMotion';</script>
   </body>
 </html>
