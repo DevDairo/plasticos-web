@@ -1,13 +1,9 @@
 ---
-import { ArrowRight, Boxes, Handshake, Info } from '@lucide/astro';
-import { Image } from 'astro:assets';
+import { ArrowRight, BadgeCheck, Boxes, Handshake, Info, Leaf, Recycle } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ActionLink from '../components/ActionLink.astro';
 import PageHero from '../components/PageHero.astro';
 import ProofBand from '../components/ProofBand.astro';
-import usoConsciente from '../assets/nosotros/uso-consciente-mascota.png';
-import disposicionResponsable from '../assets/nosotros/disposicion-responsable-mascota.png';
-import eleccionInformada from '../assets/nosotros/eleccion-informada-mascota.png';
 ---
 
 <BaseLayout
@@ -38,8 +34,13 @@ import eleccionInformada from '../assets/nosotros/eleccion-informada-mascota.png
       <div class="story-copy">
         <p class="eyebrow"><span class="eyebrow-line"></span> De dónde venimos</p>
         <h2 id="story-title">Una historia que seguimos construyendo contigo.</h2>
-        <p>Plásticos Santuario inició en Caucasia el 17 de diciembre de 2017. Desde aquí hemos acompañado a personas emprendedoras, tiendas, negocios de alimentos y comercios que necesitan productos para servir, empacar y entregar cada día. El portafolio ha reunido diferentes familias porque las necesidades de nuestros clientes también son diversas: hay quien busca una bolsa sencilla para su mostrador y quien necesita pensar en la presentación completa de una nueva receta.</p>
-        <p>Creemos que atender bien empieza por escuchar. Antes de señalar una referencia, queremos entender qué vendes, cómo lo presentas y a dónde debe llegar. Esa conversación permite orientar mejor la búsqueda y revisar las opciones disponibles para cada caso. Nuestra historia en Caucasia sigue construyéndose con los negocios que vuelven, preguntan por nuevas ideas y nos invitan a encontrar soluciones para su trabajo diario.</p>
+        <p>Somos gente trabajadora, cercana y con muchas ganas de salir adelante y ayudar a crecer a nuestra región.</p>
+        <p>Sabemos lo que es madrugar a abrir un negocio, atender con una sonrisa y ponerle el alma a cada venta. Aquí también nos mueve el esfuerzo de cada día y la ilusión de alcanzar nuevas metas.</p>
+        <p>Desde el 17 de diciembre de 2017, nacimos para que encuentres cerca lo que antes te tocaba buscar lejos. Acompañamos tanto al que abre su local por primera vez como a los emprendedores y comerciantes que llevan años consolidando sus ideas.</p>
+        <p>En esta casa te escuchamos, te asesoramos y te ayudamos a encontrar lo que necesitas. Desde la bolsa para entregar tu primera venta hasta los empaques y productos que usas todos los días, aquí cada pedido importa.</p>
+        <p>Nos gusta hablar claro, atender bien y llegar a tiempo. Porque sabemos que detrás de cada pedido hay un negocio que necesita seguir trabajando y un sueño por cumplir.</p>
+        <p>Ven, conócenos y conversemos un ratico. Cuéntanos qué necesitas y qué idea tienes en mente. Queremos acompañarte y ser parte de lo que vas construyendo.</p>
+        <p><strong>PLÁSTICOS SANTUARIO</strong><br />Aliados para tu negocio.</p>
         <a class="text-action" href="/#lineas">Explora nuestras líneas <ArrowRight size={18} aria-hidden="true" /></a>
       </div>
     </div>
@@ -49,8 +50,8 @@ import eleccionInformada from '../assets/nosotros/eleccion-informada-mascota.png
     <div class="container">
       <div class="section-heading"><p class="eyebrow"><span class="eyebrow-line"></span> Nuestra dirección</p><h2 id="institutional-title">Lo que hacemos y hacia dónde queremos crecer.</h2></div>
       <div class="institutional-grid">
-        <article><span>01 / 02</span><h3>Nuestra misión.</h3><p>Acompañar a los negocios de Caucasia y la región con una oferta clara de empaques, desechables y productos complementarios, atención cercana y orientación útil para elegir según cada necesidad. Buscamos facilitar el trabajo cotidiano de quienes emprenden, venden y sirven, con información honesta sobre las opciones disponibles y un servicio responsable en cada consulta.</p></article>
-        <article><span>02 / 02</span><h3>Nuestra visión.</h3><p>Ser un referente cercano y confiable para los negocios de Caucasia y las poblaciones que atendemos, reconocido por la variedad de su oferta, la calidad de la atención y su capacidad de evolucionar con las necesidades de sus clientes. Queremos seguir ampliando las soluciones que ofrecemos y promover decisiones de empaque cada vez mejor informadas.</p></article>
+        <article><span>01 / 02</span><h3>Nuestra misión.</h3><p>Somos aliados estratégicos de nuestros clientes, ofreciendo soluciones integrales en empaques, desechables y productos para el comercio, mediante un amplio portafolio, alta disponibilidad y entregas oportunas. Brindamos un servicio cercano y confiable que facilita sus operaciones, impulsa el crecimiento de sus negocios y construye relaciones duraderas.</p></article>
+        <article><span>02 / 02</span><h3>Nuestra visión.</h3><p>Consolidarnos como una empresa referente en nuestra región y ser la principal opción para comerciantes y consumidores que buscan soluciones en empaques, desechables y productos para el comercio, reconocida por facilitar sus actividades cotidianas y generar confianza y seguridad en cada experiencia con nuestros clientes.</p></article>
       </div>
     </div>
   </section>
@@ -60,20 +61,20 @@ import eleccionInformada from '../assets/nosotros/eleccion-informada-mascota.png
       <div><p class="eyebrow"><span class="eyebrow-line"></span> Compromiso ambiental</p><h2 id="commitment-title">Nuestro compromiso con el medio ambiente.</h2></div>
       <p>En Plásticos Santuario queremos ayudar a nuestros clientes a elegir y utilizar sus empaques de manera responsable. Por eso promovemos el uso consciente de los recursos, la correcta disposición de los productos y la búsqueda de alternativas que respondan a cada necesidad. Las características ambientales pueden variar entre referencias: si buscas un material o una forma de disposición específica, consúltanos para revisar la información del producto antes de elegir.</p>
       <ul class="commitment-values" aria-label="Ejes de nuestro compromiso ambiental">
-        <li><Image src={usoConsciente} width={400} format="webp" loading="lazy" alt="" /><span>Uso consciente</span></li>
-        <li><Image src={disposicionResponsable} width={400} format="webp" loading="lazy" alt="" /><span>Disposición responsable</span></li>
-        <li><Image src={eleccionInformada} width={400} format="webp" loading="lazy" alt="" /><span>Elección informada</span></li>
+        <li><Leaf size={64} stroke-width={1.5} aria-hidden="true" /><span>Uso consciente</span></li>
+        <li><Recycle size={64} stroke-width={1.5} aria-hidden="true" /><span>Disposición responsable</span></li>
+        <li><BadgeCheck size={64} stroke-width={1.5} aria-hidden="true" /><span>Elección informada</span></li>
       </ul>
     </div>
   </section>
 
   <section class="section reasons-section" aria-labelledby="reasons-title">
     <div class="container">
-      <div class="section-heading"><p class="eyebrow"><span class="eyebrow-line"></span> Nuestro servicio</p><h2 id="reasons-title">Lo que orienta cada conversación.</h2></div>
+      <div class="section-heading"><p class="eyebrow"><span class="eyebrow-line"></span> Nuestro servicio</p><h2 id="reasons-title">Nuestra forma de atender</h2></div>
       <div class="reason-grid">
-        <article class="reason-card"><span class="reason-icon"><Boxes size={27} aria-hidden="true" /></span><h3>Variedad con propósito</h3><p>Reunimos líneas diferentes para que un negocio pueda explorar más de una forma de servir o empacar, sin perder de vista el uso real de cada producto.</p></article>
-        <article class="reason-card"><span class="reason-icon"><Handshake size={27} aria-hidden="true" /></span><h3>Atención cercana</h3><p>Una consulta puede empezar con una medida precisa o con una idea que todavía está tomando forma. En ambos casos, buscamos escuchar y orientar con claridad.</p></article>
-        <article class="reason-card"><span class="reason-icon"><Info size={27} aria-hidden="true" /></span><h3>Información responsable</h3><p>Queremos hablar con precisión sobre materiales, usos y disponibilidad. Cuando una característica requiere ficha técnica o confirmación del proveedor, la verificamos antes de presentarla como una promesa.</p></article>
+        <article class="reason-card"><span class="reason-icon"><Boxes size={27} aria-hidden="true" /></span><h3>Variedad de productos</h3><p>Empaques, desechables y artículos para distintos usos comerciales.</p></article>
+        <article class="reason-card"><span class="reason-icon"><Handshake size={27} aria-hidden="true" /></span><h3>Atención cercana</h3><p>Te escuchamos y te ayudamos a elegir según lo que necesitas.</p></article>
+        <article class="reason-card"><span class="reason-icon"><Info size={27} aria-hidden="true" /></span><h3>Información clara</h3><p>Consultamos las especificaciones del proveedor para orientarte sobre materiales y usos.</p></article>
       </div>
     </div>
   </section>

@@ -23,8 +23,8 @@ El resultado publicable se genera en `dist/`. El servidor debe publicar ese dire
 
 - Los datos compartidos del negocio y los resúmenes de las seis líneas están en `src/data/site.ts`. El contenido largo de cada línea está en `src/data/lineContent.json` y se muestra con la plantilla `src/pages/lineas/[slug].astro`. `contenidos-web-caucasia.md` sirve como referencia factual para una redacción comercial propia; no se publican sus notas editoriales. Sin una lista vigente, cada línea invita a consultar precio y disponibilidad por WhatsApp.
 - El logo original permanece en la raíz del proyecto y se procesa con `astro:assets`.
-- La lámina de mascotas facilitada por el cliente se conserva en `src/assets/mascotas-lineas.png`; seis poses se separaron sin redibujarlas en `src/assets/lineas/`. Astro genera versiones WebP para Inicio. Las imágenes de campaña no se han integrado.
-- Inicio contiene el texto íntegro que tenía la página general de Líneas de producto, junto con las seis ilustraciones individuales enlazadas a sus subpáginas. La antigua ruta `/lineas/` redirige a `/#lineas` para conservar los enlaces existentes. La Home también resume la historia y la cobertura con enlaces a vistas ampliadas e integra las opciones de contacto. No se presenta inventario, precio ni disponibilidad en tiempo real.
+- La lámina de mascotas facilitada por el cliente se conserva en `src/assets/mascotas-lineas.png`; seis poses se separaron sin redibujarlas en `src/assets/lineas/`. Inicio usa ahora iconos de Lucide para las categorías y un carrusel manual de fondos existentes, optimizados con Astro. Las mascotas originales se conservan como recursos.
+- Inicio contiene el texto íntegro que tenía la página general de Líneas de producto, junto con seis iconos minimalistas enlazados a sus subpáginas. La antigua ruta `/lineas/` redirige a `/#lineas` para conservar los enlaces existentes. La Home también resume la historia y la cobertura con enlaces a vistas ampliadas e integra las opciones de contacto. No se presenta inventario, precio ni disponibilidad en tiempo real.
 - La página Quiénes somos incluye misión y visión como textos institucionales definitivos, según la indicación recibida en esta fase.
 - Las poblaciones a las que se realizan envíos están centralizadas en `src/data/site.ts`; las condiciones de entrega se consultan con el negocio.
 - La sección Contacto de Inicio muestra WhatsApp, teléfono, horario, dirección y el enlace de Instagram confirmado por el cliente (`@plasticossantuariocaucasia`).
@@ -65,3 +65,7 @@ Después de cambiar el código, actualiza el grafo con `.\.tools\graphify\Script
 ## Próximas fases
 
 Completar y aprobar la política de datos con la información faltante, publicarla y enlazarla desde el formulario. Revisar cada tarjeta e integrar los recursos visuales aprobados siguiendo la guía. La lógica del formulario se definirá en la fase final. Hasta entonces, el contacto activo es WhatsApp.
+
+## Ajustes de noviembre de 2026
+
+El alcance progresivo, las decisiones responsive, la reconstrucción de misión y visión y los pendientes legales están documentados en `plan-ajustes-noviembre.md`. La página `/informacion-legal/` ofrece información provisional del sitio. La política formal sigue pendiente; el formulario permanece deshabilitado. Por indicación del cliente, las pruebas y la revisión visual de esta versión quedan para validación manual.

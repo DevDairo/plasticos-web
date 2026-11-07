@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { business, whatsappUrl } from '../data/site';
+---
+
+<BaseLayout title="Información del sitio | Plásticos Santuario" description="Información sobre el sitio de Plásticos Santuario, sus canales de contacto y el estado de su política de datos.">
+  <PageHero breadcrumb="Información del sitio" eyebrow="Información" title="Información del sitio" accent="y contacto." description="Este sitio presenta las líneas de productos y los canales de atención de Plásticos Santuario en Caucasia." />
+  <section class="section">
+    <div class="container site-information">
+      <h2>Consultas y productos</h2>
+      <p>El sitio es informativo. No permite realizar compras ni pagos en línea. Puedes consultar referencias, precios, disponibilidad y condiciones de entrega directamente con el equipo.</p>
+      <h2>Canales externos</h2>
+      <p>Los enlaces a WhatsApp, Instagram y Facebook abren servicios externos. Los mapas utilizan servicios de Google y OpenStreetMap. Al utilizar estos servicios también intervienen sus propias condiciones y prácticas de privacidad.</p>
+      <h2>Formulario y datos personales</h2>
+      <p>El formulario de contacto es una vista previa deshabilitada: no recibe ni envía consultas. Por ahora, el contacto activo se realiza a través de los canales externos indicados.</p>
+      <p>La política de tratamiento de datos está en preparación y pendiente de aprobación. Esta página contiene información provisional del sitio; la política completa se publicará antes de activar el formulario.</p>
+      <h2>Contacto</h2>
+      <p>Puedes comunicarte con {business.name} por <a href={whatsappUrl('Hola, tengo una consulta sobre la información del sitio web.')} target="_blank" rel="noopener noreferrer">WhatsApp al {business.phoneDisplay}</a>.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .site-information { max-width: 850px; overflow-wrap: anywhere; }
+  h2 { margin: 32px 0 12px; color: var(--color-forest); font-family: var(--font-display); font-size: clamp(23px, 4vw, 30px); }
+  h2:first-child { margin-top: 0; }
+  p { color: var(--muted); font-size: 16px; line-height: 1.8; }
+  a { color: var(--color-forest); text-underline-offset: 3px; }
+</style>

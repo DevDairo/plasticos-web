@@ -1,6 +1,7 @@
 ---
-import { ArrowDown, ArrowRight, Leaf, MapPin, Package } from '@lucide/astro';
+import { MapPin } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroCarousel from '../components/HeroCarousel.astro';
 import ActionLink from '../components/ActionLink.astro';
 import LineIllustrationLink from '../components/LineIllustrationLink.astro';
 import ContactSection from '../components/ContactSection.astro';
@@ -9,7 +10,6 @@ import InstagramIcon from '../components/InstagramIcon.astro';
 import FacebookIcon from '../components/FacebookIcon.astro';
 import { business, productLines, whatsappUrl } from '../data/site';
 
-const whatsapp = whatsappUrl('Hola, tengo un negocio y quiero consultar opciones de empaques y productos.');
 const customOrderWhatsapp = whatsappUrl('Hola, quiero consultar por un producto personalizado o sobre pedido para mi negocio.');
 ---
 
@@ -17,31 +17,7 @@ const customOrderWhatsapp = whatsappUrl('Hola, quiero consultar por un producto 
   title="Plásticos Santuario | Empaques y soluciones para tu negocio en Caucasia"
   description="Conoce las líneas de empaques, desechables, bolsas y envases de Plásticos Santuario en Caucasia. Encuentra opciones para tu negocio y contáctanos fácilmente."
 >
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="eyebrow-line"></span> Desde Caucasia, cerca de quienes hacen crecer su negocio</p>
-        <h1 id="hero-title">Lo que necesitas para <span>empacar, servir y presentar mejor.</span></h1>
-        <p class="hero-description">Cada negocio tiene una forma distinta de atender a sus clientes. En Plásticos Santuario Caucasia encuentras empaques, desechables, bolsas, cajas, artículos para bebidas y repostería, botellas y frascos. Explora nuestras opciones y cuéntanos qué buscas: te ayudamos a revisar alternativas para tu actividad.</p>
-        <div class="hero-actions">
-          <ActionLink href="#lineas">Explorar productos</ActionLink>
-          <a class="text-action" href={whatsapp} target="_blank" rel="noopener noreferrer">Hablar con el equipo <ArrowRight size={18} aria-hidden="true" /></a>
-        </div>
-        <div class="hero-proof"><span></span> Desde 2017 acompañando negocios en Caucasia</div>
-      </div>
-      <div class="hero-visual" role="img" aria-label="Composición gráfica de empaques y envases">
-        <span class="hero-orbit hero-orbit--one" aria-hidden="true"></span>
-        <span class="hero-orbit hero-orbit--two" aria-hidden="true"></span>
-        <div class="visual-bag" aria-hidden="true"><span></span></div>
-        <div class="visual-box" aria-hidden="true"><span></span></div>
-        <div class="visual-cup" aria-hidden="true"><span></span></div>
-        <div class="visual-bottle" aria-hidden="true"><span></span></div>
-        <div class="glass-note glass-note--top"><Leaf size={20} aria-hidden="true" /><span>Opciones para<br /><strong>cada negocio</strong></span></div>
-        <div class="glass-note glass-note--bottom"><Package size={20} aria-hidden="true" /><span>Variedad para<br /><strong>elegir mejor</strong></span></div>
-      </div>
-    </div>
-    <div class="container hero-scroll"><a href="#lineas" aria-label="Ir a las líneas de producto"><ArrowDown size={16} aria-hidden="true" /> Descubre lo que ofrecemos</a></div>
-  </section>
+  <HeroCarousel />
 
   <ProofBand label="Lo que nos caracteriza" items={[
     { href: '/nosotros/', title: 'Desde Caucasia', detail: 'Conoce nuestra historia', icon: 'store' },
@@ -65,7 +41,6 @@ const customOrderWhatsapp = whatsappUrl('Hola, quiero consultar por un producto 
       <div class="line-illustration-grid" id="lineas">
         {productLines.map((line) => <LineIllustrationLink line={line} />)}
       </div>
-      <p class="line-list-note"><strong>¿Tu necesidad cruza varias líneas?</strong> Es normal: una caja de cupcakes también es un empaque de repostería, y una bolsa puede responder a distintos usos. Explora la opción que más se acerque a tu caso o escríbenos para orientarte.</p>
       <div class="line-custom-order">
         <div>
           <p class="eyebrow"><span class="eyebrow-line"></span> ¿Tienes una necesidad particular?</p>
@@ -84,7 +59,7 @@ const customOrderWhatsapp = whatsappUrl('Hola, quiero consultar por un producto 
         <h2 id="story-preview-title">Nacimos en Caucasia para acompañar a sus negocios.</h2>
       </div>
       <div class="narrative-content">
-        <p>Desde 2017, Plásticos Santuario ha crecido junto a personas que emprenden, comercios y negocios de alimentos en Caucasia. Nuestra manera de servir parte de escuchar: entender qué necesitas empacar, cómo presentas tus productos y dónde atiendes a tus clientes. Esa cercanía nos ayuda a convertir una oferta amplia en opciones más fáciles de explorar.</p>
+        <p>Desde 2017, Plásticos Santuario ha crecido junto a emprendedores, comercios y negocios de alimentos en Caucasia. Te ayudamos a elegir empaques y productos según lo que vendes y cómo lo entregas a tus clientes.</p>
         <ActionLink href="/nosotros/" variant="secondary">Conoce nuestra historia</ActionLink>
       </div>
     </div>

@@ -24,37 +24,37 @@ export const productLines = [
   {
     name: 'Biodegradables',
     slug: 'biodegradables',
-    detail: 'Explora portacomidas y platos de bagazo de caña, además de otras alternativas que vale la pena evaluar según tu producto. Conoce sus usos y consulta la composición de cada referencia antes de elegir.',
+    detail: 'Portacomidas y platos de bagazo de caña para servir y empacar alimentos.',
     icon: 'leaf',
   },
   {
     name: 'Desechables',
     slug: 'desechables',
-    detail: 'Vasos, platos, cubiertos y contenedores para atender con practicidad en el punto de venta, en eventos o en domicilios. Encuentra familias y formatos para distintas formas de servir.',
+    detail: 'Vasos, platos, cubiertos y contenedores para negocios, eventos y domicilios.',
     icon: 'cup',
   },
   {
     name: 'Empaques y bolsas',
     slug: 'empaques-y-bolsas',
-    detail: 'Bolsas para comercio, alimentos y entregas, junto con opciones de papel, plástico y presentaciones resellables. Descubre cómo buscar según el producto, el tamaño y la forma de entrega.',
+    detail: 'Bolsas de papel y plástico, y opciones resellables para comercio, alimentos y entregas.',
     icon: 'bag',
   },
   {
     name: 'Cajas para alimentos',
     slug: 'cajas-para-alimentos',
-    detail: 'Desde cajas para pizza y comidas rápidas hasta empaques para cupcakes y bandejas para preparados. Da a cada producto una presentación acorde con su viaje hasta el cliente.',
+    detail: 'Cajas para pizza, comidas rápidas y cupcakes, y bandejas para alimentos.',
     icon: 'box',
   },
   {
     name: 'Coctelería y repostería',
     slug: 'cocteleria-y-reposteria',
-    detail: 'Presenta postres, sirve bebidas y cuida los detalles de cada creación con vasos, domos, cajas y complementos de bar. Explora opciones para que tu producto se disfrute desde el primer vistazo.',
+    detail: 'Vasos, domos, cajas para postres, tortas y accesorios de bar para bebidas y repostería.',
     icon: 'sparkles',
   },
   {
     name: 'Botellas y frascos',
     slug: 'botellas-y-frascos',
-    detail: 'La presentación también cuenta cuando vendes bebidas, salsas, conservas o productos artesanales. Conoce frascos, botellas y saleros en distintas formas y consulta la referencia adecuada para tu uso.',
+    detail: 'Botellas, frascos y saleros en distintas formas y tamaños para bebidas, salsas y conservas.',
     icon: 'bottle',
   },
 ] as const;

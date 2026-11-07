@@ -1,0 +1,91 @@
+---
+import { Image } from 'astro:assets';
+import { ChevronLeft, ChevronRight } from '@lucide/astro';
+import ActionLink from './ActionLink.astro';
+import biodegradables from '../assets/lineas/biodegradables-hero-cutout.png';
+import desechables from '../assets/lineas/desechables-hero-cutout.png';
+import bolsas from '../assets/lineas/empaques-y-bolsas-hero-cutout.png';
+import cajas from '../assets/lineas/cajas-para-alimentos-hero-cutout.png';
+import reposteria from '../assets/lineas/cocteleria-y-reposteria-hero-cutout.png';
+import botellas from '../assets/lineas/botellas-y-frascos-hero-cutout.png';
+
+const slides = [
+  { image: biodegradables, label: 'Biodegradables' },
+  { image: desechables, label: 'Desechables' },
+  { image: bolsas, label: 'Empaques y bolsas' },
+  { image: cajas, label: 'Cajas para alimentos' },
+  { image: reposteria, label: 'Coctelería y repostería' },
+  { image: botellas, label: 'Botellas y frascos' },
+];
+---
+
+<section class="hero hero-carousel" aria-labelledby="hero-title" aria-roledescription="carrusel" data-hero-carousel>
+  <div class="hero-slides" aria-hidden="true">
+    {slides.map((slide, index) => (
+      <div class="hero-slide" hidden={index !== 0} data-slide data-label={slide.label}>
+        <Image src={slide.image} alt="" widths={[640, 1024, 1536]} sizes="100vw" format="webp" quality={80} loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : 'auto'} />
+      </div>
+    ))}
+  </div>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="eyebrow-line"></span> Desde Caucasia, cerca de quienes hacen crecer su negocio</p>
+      <h1 id="hero-title">Lo que necesitas para <span>empacar, servir y presentar mejor.</span></h1>
+      <p class="hero-description">Desde 2017, en Plásticos Santuario ofrecemos empaques, desechables e insumos para repostería y coctelería en Caucasia. Encuentra bolsas, cajas, botellas, productos biodegradables y frascos para tu negocio, con asesoría para elegir lo que necesitas.</p>
+      <div class="hero-actions"><ActionLink href="#lineas">Conoce nuestros productos</ActionLink></div>
+    </div>
+  </div>
+  <div class="container hero-carousel-controls" data-carousel-controls hidden>
+    <button type="button" data-previous aria-label="Ver imagen anterior"><ChevronLeft size={21} aria-hidden="true" /></button>
+    <span class="hero-carousel-status" aria-live="polite" aria-atomic="true" data-carousel-status>1 / {slides.length} · {slides[0].label}</span>
+    <button type="button" data-next aria-label="Ver imagen siguiente"><ChevronRight size={21} aria-hidden="true" /></button>
+  </div>
+</section>
+
+<script>
+  for (const carousel of document.querySelectorAll<HTMLElement>('[data-hero-carousel]')) {
+    const slides = [...carousel.querySelectorAll<HTMLElement>('[data-slide]')];
+    const controls = carousel.querySelector<HTMLElement>('[data-carousel-controls]');
+    const status = carousel.querySelector<HTMLElement>('[data-carousel-status]');
+    let current = 0;
+    const move = (step: number) => {
+      slides[current].hidden = true;
+      current = (current + step + slides.length) % slides.length;
+      slides[current].hidden = false;
+      if (status) status.textContent = `${current + 1} / ${slides.length} · ${slides[current].dataset.label}`;
+    };
+    if (slides.length > 1 && controls) {
+      controls.hidden = false;
+      controls.querySelector('[data-previous]')?.addEventListener('click', () => move(-1));
+      controls.querySelector('[data-next]')?.addEventListener('click', () => move(1));
+    }
+  }
+</script>
+
+<style>
+  .hero-carousel { isolation: isolate; padding: clamp(48px, 6vw, 88px) 0 28px; background: var(--color-cream); }
+  .hero-slides, .hero-slide { position: absolute; inset: 0; z-index: -2; }
+  .hero-slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .hero-carousel::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #f7f5eefc 0%, #f7f5eef5 38%, #f7f5eec9 57%, #f7f5ee30 100%); }
+  .hero-carousel .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .hero-copy { max-width: 690px; min-width: 0; }
+  .hero-description { max-width: 580px; color: #344b3c; }
+  .hero-carousel-controls { display: flex; align-items: center; gap: 12px; margin-top: 32px; }
+  .hero-carousel-controls[hidden] { display: none; }
+  .hero-carousel-controls button { display: inline-grid; place-items: center; flex: none; width: 44px; height: 44px; border: 1px solid #aac1a5; border-radius: 50%; color: var(--color-forest); background: #fffffff0; cursor: pointer; }
+  .hero-carousel-controls button:hover { background: #e2f1e0; }
+  .hero-carousel-controls button:focus-visible { outline: 3px solid var(--color-forest); outline-offset: 3px; }
+  .hero-carousel-status { min-width: 0; width: 240px; color: var(--color-forest); font-size: 13px; font-weight: 750; }
+  @media (max-width: 1020px) {
+    .hero-carousel::before { background: linear-gradient(90deg, #f7f5eefc, #f7f5eee8 60%, #f7f5eeb3); }
+  }
+  @media (max-width: 540px) {
+    .hero-carousel { padding-top: 36px; }
+    .hero-carousel::before { background: #f7f5eeeb; }
+    .hero-slide img { object-position: 65% center; }
+    .hero-carousel h1 { font-size: clamp(34px, 9.5vw, 48px); overflow-wrap: break-word; }
+    .hero-description { font-size: 16px; line-height: 1.65; }
+    .hero-carousel-controls { gap: 8px; margin-top: 24px; }
+    .hero-carousel-status { flex: 1; width: auto; font-size: 12px; text-align: center; }
+  }
+</style>
