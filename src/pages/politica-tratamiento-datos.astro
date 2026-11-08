@@ -1,0 +1,58 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { business, whatsappUrl } from '../data/site';
+import { legal } from '../data/legal';
+---
+
+<LegalLayout current="privacy" title="Política de tratamiento de datos personales" description="Conoce cómo se tratan los datos de contacto, para qué se utilizan y cómo ejercer tus derechos ante Plásticos Santuario.">
+  <h2>1. Responsable y atención de solicitudes</h2>
+  <dl>
+    <dt>Responsable del tratamiento</dt><dd>{legal.responsibleName}</dd>
+    <dt>NIT</dt><dd>{legal.taxId}</dd>
+    <dt>Domicilio y dirección de atención</dt><dd>{legal.confirmedAddress}</dd>
+    <dt>Atención de peticiones, consultas y reclamos</dt><dd>{legal.privacyContactArea}</dd>
+    <dt>Teléfono y WhatsApp</dt><dd><a href={`tel:+${business.whatsapp}`}>{business.phoneDisplay}</a> · <a href={whatsappUrl('Hola, quiero presentar una solicitud sobre mis datos personales dirigida a la Administración de Plásticos Santuario Caucasia S.A.S.')} target="_blank" rel="noopener noreferrer">Presentar una solicitud por WhatsApp</a></dd>
+  </dl>
+  <p>El correo de referencia se muestra resaltado al final de esta página y puede actualizarse. También puedes presentar tu solicitud por escrito en la dirección indicada o por WhatsApp; conserva constancia de la solicitud y de la respuesta.</p>
+
+  <h2>2. Alcance y datos tratados</h2>
+  <p>Esta política se aplica a los datos de personas naturales recibidos para atender consultas y solicitudes comerciales de Plásticos Santuario Caucasia. Incluye nombre, teléfono, correo cuando se facilite, ciudad o municipio, línea de interés y contenido de la consulta. Si después se gestiona un pedido, se solicitarán únicamente los datos adicionales necesarios para esa operación y se informará su finalidad.</p>
+  <p><strong>El formulario de esta versión está deshabilitado y no recoge ni envía información.</strong> No necesitas completar un formulario para navegar. Si decides contactar al negocio por un canal externo, ese contacto puede dar lugar al tratamiento de los datos que suministres.</p>
+  <p>No se solicitan datos sensibles ni de niños, niñas o adolescentes para una consulta de productos. No los incluyas en mensajes abiertos. Cualquier tratamiento excepcional deberá cumplir las garantías especiales y los requisitos legales correspondientes; las respuestas sobre datos sensibles son facultativas.</p>
+
+  <h2>3. Finalidades y operaciones</h2>
+  <p>Los datos se utilizan para comprender la solicitud, orientar sobre productos, consultar referencias y disponibilidad, preparar la información comercial solicitada y mantener la comunicación necesaria para atenderla. Si se concreta una operación, podrán utilizarse para gestionarla y cumplir sus obligaciones legales, informando al titular lo que corresponda.</p>
+  <p>El tratamiento puede comprender recepción, registro, almacenamiento, consulta, uso, actualización y eliminación. El acceso y la comunicación de datos deben limitarse a quienes los necesiten para las finalidades informadas o estén habilitados por la ley. No se autoriza su venta ni su utilización para finalidades incompatibles.</p>
+  <p>Esta autorización de atención no incluye publicidad. Las campañas, listas promocionales u otras finalidades adicionales requieren una autorización independiente cuando corresponda y deben respetar los canales, horarios y mecanismos de exclusión legalmente aplicables.</p>
+
+  <h2>4. Autorización y aviso de privacidad</h2>
+  <p>Salvo excepción legal, se requiere autorización previa, informada y verificable. Antes de recoger datos se informará quién es el responsable, qué uso tendrán, dónde consultar esta política y cómo ejercer los derechos. El silencio y la navegación no equivalen a autorizar.</p>
+  <p>Cuando se habilite el formulario, la casilla de autorización estará inicialmente desmarcada. Su texto se limitará a atender la consulta y a contactar al solicitante. Deberá conservarse prueba de la manifestación, la fecha y la versión del texto aceptado; no bastará con mostrar una casilla en pantalla. Si no autorizas el tratamiento necesario, no podrá tramitarse por ese formulario una consulta que requiera tus datos.</p>
+
+  <h2>5. Tus derechos</h2>
+  <p>Puedes conocer, actualizar y rectificar tus datos; solicitar prueba de la autorización cuando proceda; saber cómo se han utilizado; acceder a ellos gratuitamente en las condiciones legales, y pedir la supresión o revocar la autorización cuando corresponda. La supresión o revocatoria no procede respecto de información que deba conservarse por una obligación legal o contractual.</p>
+  <p>También puedes presentar una queja ante la Superintendencia de Industria y Comercio. Para hacerlo por el tratamiento de tus datos, primero debes agotar la consulta o el reclamo ante el responsable o encargado, conforme al artículo 16 de la Ley 1581 de 2012.</p>
+
+  <h2>6. Cómo ejercer tus derechos</h2>
+  <p>Dirige la solicitud a la Administración por los canales del apartado 1. Indica tu nombre, un medio de respuesta, lo que solicitas y los hechos relevantes. Si actúas en nombre de otra persona, acredita esa representación. Solo se solicitarán los soportes necesarios para comprobar tu legitimación y resolver el caso, por un canal adecuado.</p>
+  <h3>Consultas</h3>
+  <p>Se atienden en un máximo de diez (10) días hábiles desde la recepción. Si se necesita más tiempo, se informarán antes del vencimiento el motivo y la nueva fecha de respuesta, con una ampliación máxima de cinco (5) días hábiles adicionales.</p>
+  <h3>Reclamos de corrección, actualización, supresión o revocatoria</h3>
+  <p>El plazo máximo es de quince (15) días hábiles desde el día siguiente a la recepción. Si no es posible resolver en ese término, se informarán el motivo y la fecha de respuesta antes de su vencimiento, sin exceder ocho (8) días hábiles adicionales.</p>
+  <p>Si el reclamo está incompleto, se solicitará subsanarlo dentro de los cinco (5) días siguientes a su recepción. Si transcurren dos (2) meses desde ese requerimiento sin respuesta, se entenderá desistido. Si el receptor no es competente, lo trasladará a quien corresponda en un máximo de dos (2) días hábiles e informará al solicitante.</p>
+  <p>Recibido el reclamo completo, se identificará el registro afectado con la anotación de reclamo en trámite y su motivo dentro de los dos (2) días hábiles siguientes; se mantendrá hasta decidirlo. La verificación de identidad protege la información y no debe convertirse en un obstáculo injustificado.</p>
+
+  <h2>7. Conservación y seguridad</h2>
+  <p>La información se conserva durante el tiempo necesario para atender la solicitud y gestionar la relación que de ella resulte. Cuando exista un deber legal o contractual de conservación, se mantendrá únicamente lo necesario durante el plazo aplicable. Agotada la finalidad y esos deberes, debe eliminarse o anonimizarse. No se prevé una conservación indefinida por el solo hecho de haber contactado al negocio.</p>
+  <p>El responsable debe aplicar medidas técnicas, humanas y administrativas proporcionales al tratamiento: acceso limitado, confidencialidad, protección de cuentas y archivos, gestión de autorizaciones y atención de incidentes. Ninguna medida permite prometer seguridad absoluta. Los proveedores que actúen por cuenta del negocio deben sujetarse a las instrucciones y obligaciones de protección de datos que correspondan.</p>
+
+  <h2 id="servicios-externos">8. Navegación, mapas y proveedores externos</h2>
+  <p>La versión actual no incorpora herramientas propias de publicidad o analítica ni instala cookies propias para esos fines. Esto no significa que los servicios externos carezcan de cookies o de registros técnicos. La infraestructura que sirve el sitio puede procesar datos técnicos de conexión, como la dirección IP, para entregar el contenido y operar el servicio.</p>
+  <p>El mapa de Inicio carga Google Maps y el mapa de Cobertura solicita imágenes cartográficas a OpenStreetMap. Al cargarse, el navegador puede comunicar a esos proveedores la IP, datos del navegador y referencias técnicas de la solicitud. Los enlaces a WhatsApp, Facebook e Instagram abren plataformas externas; allí se aplican también las políticas de sus proveedores.</p>
+  <p>Estas conexiones pueden implicar tratamiento fuera de Colombia. El negocio debe cumplir las reglas de transmisión o transferencia internacional que correspondan a sus propios tratamientos; este aviso no sustituye los acuerdos, garantías o autorizaciones legalmente exigibles.</p>
+  <p>Consulta las políticas de <a href="https://policies.google.com/privacy?hl=es" target="_blank" rel="noopener noreferrer">Google</a>, <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">WhatsApp</a>, <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer">Meta</a> y <a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener noreferrer">OpenStreetMap Foundation</a>. Antes de incorporar nuevas herramientas que recojan datos, se deberá actualizar la información y obtener las autorizaciones que correspondan.</p>
+
+  <h2>9. Vigencia y cambios</h2>
+  <p>Vigencia de esta versión: {legal.effectiveDate}. La duración de los registros depende de las finalidades y obligaciones descritas en el apartado 7. Las modificaciones se identificarán por fecha y versión. Los cambios sustanciales en el responsable o las finalidades se comunicarán oportunamente antes de implementarlos; una nueva finalidad que requiera consentimiento exigirá nueva autorización.</p>
+  <p>Marco normativo: <a href="https://apps.procuraduria.gov.co/normograma/compilacion/docs/ley_1581_2012.htm" target="_blank" rel="noopener noreferrer">Ley 1581 de 2012</a> y <a href="https://relatoria.colombiacompra.gov.co/normativa/decreto-1074-de-2015/" target="_blank" rel="noopener noreferrer">Decreto 1074 de 2015, capítulo 25 del título 2 de la parte 2 del libro 2</a>. Para comunicaciones comerciales también se atenderá la <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=213990" target="_blank" rel="noopener noreferrer">Ley 2300 de 2023</a> en lo aplicable.</p>
+</LegalLayout>

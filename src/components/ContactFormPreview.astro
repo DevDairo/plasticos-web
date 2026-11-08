@@ -1,5 +1,7 @@
 ---
 import { productLines, whatsappUrl } from '../data/site';
+import { legal, legalLinks } from '../data/legal';
+import LegalContact from './LegalContact.astro';
 
 const whatsapp = whatsappUrl('Hola, quiero consultar opciones para mi negocio.');
 ---
@@ -47,14 +49,16 @@ const whatsapp = whatsappUrl('Hola, quiero consultar opciones para mi negocio.')
           <textarea id="contact-message" name="message" rows="5" placeholder="Qué producto buscas, para qué lo usarás y qué cantidad aproximada necesitas" required></textarea>
         </div>
       </div>
+    </fieldset>
       <div class="contact-form-footer">
+        <p id="contact-privacy-notice">Tus datos se utilizarán para atender la consulta y contactarte sobre ella. No incluye publicidad. Puedes conocer, actualizar, rectificar o solicitar la supresión de tus datos en los términos de la política.</p>
         <label class="contact-form-consent" for="contact-consent">
-          <input id="contact-consent" name="consent" type="checkbox" required />
-          <span>Acepto el tratamiento de mis datos personales conforme a la política de tratamiento de datos.</span>
+          <input id="contact-consent" name="consent" type="checkbox" value="consulta" aria-describedby="contact-privacy-notice contact-form-status" required disabled />
+          <span>Autorizo a {legal.responsibleName} a tratar los datos que suministre para atender mi consulta y contactarme sobre ella, según la <a href={legalLinks.privacy}>Política de tratamiento de datos personales</a>.</span>
         </label>
-        <p>La política se enlazará aquí cuando esté aprobada y publicada.</p>
+        <p>Consulta los <a href={legalLinks.terms}>términos y condiciones del sitio y del formulario</a>. Esta vista previa no registra autorizaciones ni envía datos.</p>
+        <LegalContact compact />
         <button type="submit" disabled>Enviar consulta</button>
       </div>
-    </fieldset>
   </form>
 </section>

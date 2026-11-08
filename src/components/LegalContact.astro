@@ -1,0 +1,24 @@
+---
+import { business } from '../data/site';
+import { legal } from '../data/legal';
+interface Props { compact?: boolean; }
+const { compact = false } = Astro.props;
+---
+
+<div class:list={['legal-contact', { 'legal-contact--compact': compact }]}>
+  <p><strong>Teléfono:</strong> <a href={`tel:+${business.whatsapp}`}>{business.phoneDisplay}</a></p>
+  <div class="reference-email">
+    <p><strong>Correo de referencia:</strong> <a href={`mailto:${business.email}`}>{business.email}</a></p>
+    {legal.emailIsReference && <p class="reference-email-note"><strong>Correo de referencia, sujeto a actualización.</strong> Si cambia, se actualizará en esta página. También puedes contactar al negocio por teléfono o WhatsApp.</p>}
+  </div>
+</div>
+
+<style>
+  .legal-contact { margin-block: 20px; }
+  .legal-contact p { margin: 6px 0; font-size: 15px; line-height: 1.7; overflow-wrap: anywhere; }
+  .legal-contact a { color: var(--color-forest); text-decoration: underline; text-underline-offset: 3px; }
+  .reference-email { margin-top: 12px; padding: 13px 16px; border: 1px solid #d7ae37; border-left: 4px solid #b67d0b; border-radius: 10px; background: #fff5cd; color: #58400b; }
+  .reference-email a { color: #58400b; font-weight: 800; }
+  .reference-email .reference-email-note { font-size: 12px; line-height: 1.6; }
+  .legal-contact--compact p { font-size: 12px; }
+</style>

@@ -2,90 +2,129 @@
 import { Image } from 'astro:assets';
 import { ChevronLeft, ChevronRight } from '@lucide/astro';
 import ActionLink from './ActionLink.astro';
-import biodegradables from '../assets/lineas/biodegradables-hero-cutout.png';
-import desechables from '../assets/lineas/desechables-hero-cutout.png';
-import bolsas from '../assets/lineas/empaques-y-bolsas-hero-cutout.png';
-import cajas from '../assets/lineas/cajas-para-alimentos-hero-cutout.png';
-import reposteria from '../assets/lineas/cocteleria-y-reposteria-hero-cutout.png';
-import botellas from '../assets/lineas/botellas-y-frascos-hero-cutout.png';
+import portafolio from '../assets/inicio/portafolio.png';
+import alimentos from '../assets/inicio/alimentos.png';
+import presentacion from '../assets/inicio/presentacion.png';
 
 const slides = [
-  { image: biodegradables, label: 'Biodegradables' },
-  { image: desechables, label: 'Desechables' },
-  { image: bolsas, label: 'Empaques y bolsas' },
-  { image: cajas, label: 'Cajas para alimentos' },
-  { image: reposteria, label: 'Coctelería y repostería' },
-  { image: botellas, label: 'Botellas y frascos' },
+  { image: portafolio, label: 'Empaques para tu negocio' },
+  { image: alimentos, label: 'Opciones para servir y llevar' },
+  { image: presentacion, label: 'Envases y presentación' },
 ];
 ---
 
-<section class="hero hero-carousel" aria-labelledby="hero-title" aria-roledescription="carrusel" data-hero-carousel>
-  <div class="hero-slides" aria-hidden="true">
+<section class="home-carousel" aria-labelledby="hero-title" aria-roledescription="carrusel" data-hero-carousel>
+  <div class="carousel-images" aria-hidden="true">
     {slides.map((slide, index) => (
-      <div class="hero-slide" hidden={index !== 0} data-slide data-label={slide.label}>
-        <Image src={slide.image} alt="" widths={[640, 1024, 1536]} sizes="100vw" format="webp" quality={80} loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : 'auto'} />
+      <div class:list={['carousel-image', { 'is-active': index === 0 }]} hidden={index !== 0} data-slide data-label={slide.label}>
+        <Image src={slide.image} alt="" widths={[640, 1024, 1536]} sizes="100vw" format="webp" quality={85} loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : 'auto'} />
       </div>
     ))}
   </div>
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <p class="eyebrow"><span class="eyebrow-line"></span> Desde Caucasia, cerca de quienes hacen crecer su negocio</p>
+  <div class="container carousel-content">
+    <div class="carousel-copy">
+      <p class="eyebrow"><span class="eyebrow-line"></span> Plásticos Santuario · Caucasia</p>
       <h1 id="hero-title">Lo que necesitas para <span>empacar, servir y presentar mejor.</span></h1>
-      <p class="hero-description">Desde 2017, en Plásticos Santuario ofrecemos empaques, desechables e insumos para repostería y coctelería en Caucasia. Encuentra bolsas, cajas, botellas, productos biodegradables y frascos para tu negocio, con asesoría para elegir lo que necesitas.</p>
-      <div class="hero-actions"><ActionLink href="#lineas">Conoce nuestros productos</ActionLink></div>
+      <p class="carousel-description">Desde 2017, en Plásticos Santuario ofrecemos empaques, desechables e insumos para repostería y coctelería en Caucasia. Encuentra bolsas, cajas, botellas, productos biodegradables y frascos para tu negocio, con asesoría para elegir lo que necesitas.</p>
+      <div class="carousel-action"><ActionLink href="#lineas">Conoce nuestros productos</ActionLink></div>
     </div>
   </div>
-  <div class="container hero-carousel-controls" data-carousel-controls hidden>
-    <button type="button" data-previous aria-label="Ver imagen anterior"><ChevronLeft size={21} aria-hidden="true" /></button>
-    <span class="hero-carousel-status" aria-live="polite" aria-atomic="true" data-carousel-status>1 / {slides.length} · {slides[0].label}</span>
-    <button type="button" data-next aria-label="Ver imagen siguiente"><ChevronRight size={21} aria-hidden="true" /></button>
+  <div class="carousel-controls" data-carousel-controls hidden>
+    <button class="carousel-arrow carousel-arrow--previous" type="button" data-previous aria-label="Ver imagen anterior"><ChevronLeft size={30} aria-hidden="true" /></button>
+    <div class="carousel-dots" role="group" aria-label="Elegir imagen del carrusel">
+      {slides.map((slide, index) => <button class="carousel-dot" type="button" data-dot aria-label={`Ver imagen ${index + 1}: ${slide.label}`} aria-current={index === 0 ? 'true' : 'false'}><span></span></button>)}
+    </div>
+    <button class="carousel-arrow carousel-arrow--next" type="button" data-next aria-label="Ver imagen siguiente"><ChevronRight size={30} aria-hidden="true" /></button>
+    <span class="carousel-status" aria-live="polite" aria-atomic="true" data-carousel-status>Imagen 1 de {slides.length}: {slides[0].label}</span>
   </div>
+  <p class="carousel-caption">Imágenes ilustrativas de las líneas de producto.</p>
 </section>
 
 <script>
   for (const carousel of document.querySelectorAll<HTMLElement>('[data-hero-carousel]')) {
     const slides = [...carousel.querySelectorAll<HTMLElement>('[data-slide]')];
+    const dots = [...carousel.querySelectorAll<HTMLButtonElement>('[data-dot]')];
     const controls = carousel.querySelector<HTMLElement>('[data-carousel-controls]');
     const status = carousel.querySelector<HTMLElement>('[data-carousel-status]');
     let current = 0;
-    const move = (step: number) => {
-      slides[current].hidden = true;
-      current = (current + step + slides.length) % slides.length;
-      slides[current].hidden = false;
-      if (status) status.textContent = `${current + 1} / ${slides.length} · ${slides[current].dataset.label}`;
+    const show = (index: number) => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('is-active', i === current));
+      dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === current)));
+      if (status) status.textContent = `Imagen ${current + 1} de ${slides.length}: ${slides[current].dataset.label}`;
     };
     if (slides.length > 1 && controls) {
+      // CSS keeps inactive images invisible while allowing both sides of the transition to render.
+      slides.forEach((slide) => { slide.hidden = false; });
       controls.hidden = false;
-      controls.querySelector('[data-previous]')?.addEventListener('click', () => move(-1));
-      controls.querySelector('[data-next]')?.addEventListener('click', () => move(1));
+      controls.querySelector('[data-previous]')?.addEventListener('click', () => show(current - 1));
+      controls.querySelector('[data-next]')?.addEventListener('click', () => show(current + 1));
+      dots.forEach((dot, index) => dot.addEventListener('click', () => show(index)));
+      controls.addEventListener('keydown', (event) => {
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        show(current + (event.key === 'ArrowLeft' ? -1 : 1));
+        if (dots.includes(document.activeElement as HTMLButtonElement)) dots[current].focus();
+      });
     }
   }
 </script>
 
 <style>
-  .hero-carousel { isolation: isolate; padding: clamp(48px, 6vw, 88px) 0 28px; background: var(--color-cream); }
-  .hero-slides, .hero-slide { position: absolute; inset: 0; z-index: -2; }
-  .hero-slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-  .hero-carousel::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #f7f5eefc 0%, #f7f5eef5 38%, #f7f5eec9 57%, #f7f5ee30 100%); }
-  .hero-carousel .hero-grid { grid-template-columns: minmax(0, 1fr); }
-  .hero-copy { max-width: 690px; min-width: 0; }
-  .hero-description { max-width: 580px; color: #344b3c; }
-  .hero-carousel-controls { display: flex; align-items: center; gap: 12px; margin-top: 32px; }
-  .hero-carousel-controls[hidden] { display: none; }
-  .hero-carousel-controls button { display: inline-grid; place-items: center; flex: none; width: 44px; height: 44px; border: 1px solid #aac1a5; border-radius: 50%; color: var(--color-forest); background: #fffffff0; cursor: pointer; }
-  .hero-carousel-controls button:hover { background: #e2f1e0; }
-  .hero-carousel-controls button:focus-visible { outline: 3px solid var(--color-forest); outline-offset: 3px; }
-  .hero-carousel-status { min-width: 0; width: 240px; color: var(--color-forest); font-size: 13px; font-weight: 750; }
-  @media (max-width: 1020px) {
-    .hero-carousel::before { background: linear-gradient(90deg, #f7f5eefc, #f7f5eee8 60%, #f7f5eeb3); }
+  .home-carousel { position: relative; isolation: isolate; overflow: hidden; background: var(--color-cream); }
+  .carousel-images, .carousel-image { position: absolute; inset: 0; z-index: -2; }
+  .carousel-images { overflow: hidden; }
+  .carousel-image { opacity: 0; visibility: hidden; transform: translateX(24px); transition: opacity .65s ease, transform .65s var(--ease), visibility .65s; }
+  .carousel-image.is-active { opacity: 1; visibility: visible; transform: translateX(0); }
+  .carousel-image[hidden] { display: none; }
+  .carousel-image img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: right center; }
+  .home-carousel::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #f7f5eef5 0%, #f7f5eeeb 28%, #f7f5ee8c 44%, #f7f5ee00 65%); }
+  .carousel-content { display: flex; align-items: center; min-height: clamp(620px, 46vw, 760px); padding-block: 64px 90px; }
+  .carousel-copy { width: 46%; max-width: 560px; }
+  h1 { margin: 22px 0; color: var(--color-forest); font-family: var(--font-display); font-size: clamp(40px, 3.8vw, 58px); font-weight: 800; line-height: 1.06; letter-spacing: -.05em; }
+  h1 span { color: var(--color-green); }
+  .carousel-description { margin: 0; color: #344b3c; font-size: 16px; line-height: 1.8; }
+  .carousel-action { margin-top: 28px; }
+  .carousel-controls[hidden] { display: none; }
+  .carousel-arrow { position: absolute; top: 50%; display: grid; place-items: center; width: 48px; height: 56px; padding: 0; border: 1px solid #ffffff80; border-radius: 12px; color: var(--color-forest); background: #ffffffb8; cursor: pointer; transform: translateY(-50%); }
+  .carousel-arrow--previous { left: 14px; }
+  .carousel-arrow--next { right: 14px; }
+  .carousel-arrow:hover { background: #fff; }
+  .carousel-dots { position: absolute; bottom: 28px; left: 50%; display: flex; gap: 2px; padding: 0 7px; border: 1px solid #ffffff80; border-radius: 99px; background: #ffffffb8; transform: translateX(-50%); }
+  .carousel-dot { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
+  .carousel-dot span { width: 8px; height: 8px; border-radius: 99px; background: #758779; transition: width .2s ease, background .2s ease; }
+  .carousel-dot[aria-current='true'] span { width: 24px; background: var(--color-green); }
+  button:focus-visible { outline: 3px solid var(--color-red); outline-offset: 3px; }
+  .carousel-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .carousel-caption { position: absolute; left: 20px; bottom: 8px; margin: 0; padding: 3px 7px; border-radius: 4px; background: #f7f5eedb; color: #344b3c; font-size: 10px; }
+  @media (min-width: 1021px) and (max-width: 1399px) {
+    .carousel-content { width: calc(100% - 160px); }
+    .carousel-copy { width: 49%; }
   }
-  @media (max-width: 540px) {
-    .hero-carousel { padding-top: 36px; }
-    .hero-carousel::before { background: #f7f5eeeb; }
-    .hero-slide img { object-position: 65% center; }
-    .hero-carousel h1 { font-size: clamp(34px, 9.5vw, 48px); overflow-wrap: break-word; }
-    .hero-description { font-size: 16px; line-height: 1.65; }
-    .hero-carousel-controls { gap: 8px; margin-top: 24px; }
-    .hero-carousel-status { flex: 1; width: auto; font-size: 12px; text-align: center; }
+  @media (min-width: 1400px) { .carousel-content { width: min(1240px, calc(100% - 180px)); } }
+  @media (max-width: 1020px) {
+    .carousel-content { min-height: 0; padding-block: 38px 340px; }
+    .carousel-copy { width: 100%; max-width: none; }
+    h1 { max-width: 600px; font-size: clamp(34px, 6.5vw, 46px); margin-block: 18px; }
+    .carousel-description { max-width: 620px; font-size: 15px; line-height: 1.7; }
+    .carousel-images { top: auto; height: 340px; }
+    .carousel-image img { object-fit: cover; object-position: right 65%; }
+    .home-carousel::before { background: linear-gradient(180deg, #f7f5ee 0%, #f7f5ee 55%, #f7f5ee00 75%); }
+    .carousel-arrow { top: auto; bottom: 130px; width: 44px; height: 48px; transform: none; }
+    .carousel-arrow--previous { left: 10px; }
+    .carousel-arrow--next { right: 10px; }
+    .carousel-dots { bottom: 28px; }
+    .carousel-caption { left: 10px; bottom: 4px; font-size: 9px; }
+  }
+  @media (min-width: 541px) and (max-width: 1020px) {
+    .carousel-image img { object-fit: contain; object-position: right center; }
+  }
+  @media (max-width: 400px) {
+    .carousel-content { width: calc(100% - 40px); }
+    .carousel-action :global(.action-link) { width: 100%; padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-dot span, .carousel-image { transition: none; }
+    .carousel-image { transform: none; }
   }
 </style>

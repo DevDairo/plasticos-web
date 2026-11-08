@@ -1,6 +1,6 @@
-# Política de tratamiento de datos personales — borrador interno
+# Política de tratamiento de datos personales — borrador histórico
 
-**Estado: pendiente de validación y aprobación por Plásticos Santuario. No publicar ni enlazar desde el sitio todavía.** Este texto se limita a la actividad informativa y de contacto de la web de Caucasia. Antes de publicarlo, la empresa debe revisar que describa sus prácticas reales de atención, conservación y seguridad de datos.
+**Estado: documento histórico sustituido el 8 de noviembre de 2026. No usar como versión vigente ni enlazar desde el sitio.** La política actual está en `src/pages/politica-tratamiento-datos.astro` y los términos en `src/pages/informacion-legal.astro`. Los datos centralizados se encuentran en `src/data/legal.ts` y `src/data/site.ts`. El responsable y su NIT se incorporaron a partir del extracto de RUES aportado por el cliente; este confirmó Carrera 20 # 28-00. El teléfono confirmado es 3214287719 y el correo de referencia es plasticossantuario@gmail.com, resaltado por indicación del cliente. El listado siguiente conserva los pendientes de la fase anterior, no el estado actual.
 
 ## Datos indispensables por completar
 

@@ -3,6 +3,7 @@ export const business = {
   tagline: 'Aliados para tu negocio',
   whatsapp: '573214287719',
   phoneDisplay: '321 428 7719',
+  email: 'plasticossantuario@gmail.com',
   address: 'Carrera 20 # 28-00, Caucasia, Antioquia',
   socialHandle: '@plasticossantuariocaucasia',
   instagramUrl: 'https://www.instagram.com/plasticossantuariocaucasia/',

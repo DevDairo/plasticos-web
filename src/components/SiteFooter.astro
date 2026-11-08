@@ -4,6 +4,7 @@ import FacebookIcon from './FacebookIcon.astro';
 import InstagramIcon from './InstagramIcon.astro';
 import WhatsAppIcon from './WhatsAppIcon.astro';
 import { business, whatsappUrl } from '../data/site';
+import { legalLinks } from '../data/legal';
 
 const whatsapp = whatsappUrl('Hola, quisiera información sobre sus productos.');
 ---
@@ -35,7 +36,8 @@ const whatsapp = whatsappUrl('Hola, quisiera información sobre sus productos.')
   </div>
   <div class="container footer-bottom">
     <span>© {new Date().getFullYear()} Plásticos Santuario</span>
-    <a href="/informacion-legal/">Información del sitio</a>
+    <a href={legalLinks.terms}>Términos y condiciones</a>
+    <a href={legalLinks.privacy}>Tratamiento de datos personales</a>
     <span>{business.tagline}</span>
   </div>
 </footer>

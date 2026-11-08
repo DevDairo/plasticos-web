@@ -1,0 +1,53 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import LegalContact from '../components/LegalContact.astro';
+import { business } from '../data/site';
+import { legal, legalIdentityComplete, legalLinks } from '../data/legal';
+interface Props { title: string; description: string; current: 'terms' | 'privacy'; }
+const { title, description, current } = Astro.props;
+---
+
+<BaseLayout title={`${title} | ${business.name}`} description={description}>
+  <PageHero breadcrumb={title} eyebrow="Información legal" title={title} description={description} />
+  <section class="section legal-section">
+    <div class="container legal-content">
+      <nav class="legal-nav" aria-label="Documentos legales">
+        <a href={legalLinks.terms} aria-current={current === 'terms' ? 'page' : undefined}>Términos y condiciones</a>
+        <a href={legalLinks.privacy} aria-current={current === 'privacy' ? 'page' : undefined}>Tratamiento de datos</a>
+      </nav>
+      <p class="legal-version">Última revisión: {legal.updatedDisplay} · Versión {legal.version}</p>
+      {!legalIdentityComplete && <aside class="legal-pending" aria-labelledby="legal-pending-title">
+        <h2 id="legal-pending-title">Versión preparada para revisión del negocio</h2>
+        <p>Falta confirmar el nombre o razón social e identificación del responsable, la dirección de atención, la persona o área que atenderá solicitudes y la fecha de entrada en vigor. El correo resaltado es de referencia. El formulario permanece deshabilitado y no recibe datos.</p>
+      </aside>}
+      <article class="legal-article"><slot /></article>
+      <section class="legal-contact-section" aria-labelledby="legal-contact-title">
+        <h2 id="legal-contact-title">Contacto del negocio</h2>
+        <p>{business.name} · Caucasia, Antioquia, Colombia.</p>
+        <LegalContact />
+      </section>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-section { padding-block: 36px 70px; }
+  .legal-content { max-width: 900px; overflow-wrap: anywhere; }
+  .legal-nav { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+  .legal-nav a { padding: 12px 16px; border: 1px solid var(--line); border-radius: 12px; color: var(--color-forest); font-size: 14px; font-weight: 800; text-decoration: none; }
+  .legal-nav a[aria-current='page'] { background: var(--color-forest); color: white; }
+  .legal-version { font-size: 13px; color: var(--muted); }
+  .legal-pending { margin-block: 24px 32px; padding: 20px; border: 1px solid #d7ae37; border-radius: 14px; background: #fff9e5; }
+  .legal-pending h2 { margin: 0 0 10px; font-size: 20px; }
+  .legal-pending p { margin: 0; font-size: 14px; line-height: 1.7; }
+  .legal-article :global(h2), .legal-contact-section h2 { margin: 36px 0 12px; color: var(--color-forest); font-family: var(--font-display); font-size: clamp(23px, 3vw, 29px); line-height: 1.25; letter-spacing: -.025em; }
+  .legal-article :global(h3) { margin-top: 24px; color: var(--color-forest); font-size: 18px; }
+  .legal-article :global(p), .legal-article :global(li), .legal-contact-section > p { color: var(--muted); font-size: 15px; line-height: 1.85; }
+  .legal-article :global(li + li) { margin-top: 9px; }
+  .legal-article :global(a) { color: var(--color-forest); text-decoration: underline; text-underline-offset: 3px; }
+  .legal-article :global(dt) { margin-top: 14px; color: var(--color-forest); font-weight: 800; }
+  .legal-article :global(dd) { margin: 4px 0; color: var(--muted); line-height: 1.7; }
+  .legal-contact-section { margin-top: 36px; border-top: 1px solid var(--line); }
+  @media (max-width: 540px) { .legal-content { width: calc(100% - 40px); } .legal-nav { flex-direction: column; } }
+</style>

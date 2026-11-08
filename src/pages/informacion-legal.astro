@@ -1,30 +1,41 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHero from '../components/PageHero.astro';
+import LegalLayout from '../layouts/LegalLayout.astro';
 import { business, whatsappUrl } from '../data/site';
+import { legal, legalLinks } from '../data/legal';
 ---
 
-<BaseLayout title="Información del sitio | Plásticos Santuario" description="Información sobre el sitio de Plásticos Santuario, sus canales de contacto y el estado de su política de datos.">
-  <PageHero breadcrumb="Información del sitio" eyebrow="Información" title="Información del sitio" accent="y contacto." description="Este sitio presenta las líneas de productos y los canales de atención de Plásticos Santuario en Caucasia." />
-  <section class="section">
-    <div class="container site-information">
-      <h2>Consultas y productos</h2>
-      <p>El sitio es informativo. No permite realizar compras ni pagos en línea. Puedes consultar referencias, precios, disponibilidad y condiciones de entrega directamente con el equipo.</p>
-      <h2>Canales externos</h2>
-      <p>Los enlaces a WhatsApp, Instagram y Facebook abren servicios externos. Los mapas utilizan servicios de Google y OpenStreetMap. Al utilizar estos servicios también intervienen sus propias condiciones y prácticas de privacidad.</p>
-      <h2>Formulario y datos personales</h2>
-      <p>El formulario de contacto es una vista previa deshabilitada: no recibe ni envía consultas. Por ahora, el contacto activo se realiza a través de los canales externos indicados.</p>
-      <p>La política de tratamiento de datos está en preparación y pendiente de aprobación. Esta página contiene información provisional del sitio; la política completa se publicará antes de activar el formulario.</p>
-      <h2>Contacto</h2>
-      <p>Puedes comunicarte con {business.name} por <a href={whatsappUrl('Hola, tengo una consulta sobre la información del sitio web.')} target="_blank" rel="noopener noreferrer">WhatsApp al {business.phoneDisplay}</a>.</p>
-    </div>
-  </section>
-</BaseLayout>
+<LegalLayout current="terms" title="Términos y condiciones" description="Condiciones de uso del sitio informativo de Plásticos Santuario y de sus canales de consulta y atención.">
+  <h2>1. Identificación y alcance</h2>
+  <p>Este sitio corresponde a <strong>{legal.responsibleName}</strong>, NIT <strong>{legal.taxId}</strong>, con domicilio y dirección de atención en {legal.confirmedAddress}, que utiliza el nombre comercial Plásticos Santuario. Los canales de contacto se encuentran al final de esta página.</p>
+  <p>La web presenta el negocio, sus líneas de productos, su historia, ubicación y cobertura. No cuenta con carrito, pagos ni confirmación de pedidos en línea. Las consultas comerciales se atienden por los canales indicados. Navegar por el sitio no constituye una compra ni autoriza por sí mismo el tratamiento de datos personales para publicidad.</p>
 
-<style>
-  .site-information { max-width: 850px; overflow-wrap: anywhere; }
-  h2 { margin: 32px 0 12px; color: var(--color-forest); font-family: var(--font-display); font-size: clamp(23px, 4vw, 30px); }
-  h2:first-child { margin-top: 0; }
-  p { color: var(--muted); font-size: 16px; line-height: 1.8; }
-  a { color: var(--color-forest); text-underline-offset: 3px; }
-</style>
+  <h2>2. Información sobre productos y consultas</h2>
+  <p>Las imágenes y descripciones orientan sobre las familias del portafolio. Algunas imágenes son ilustrativas y no identifican una referencia disponible. Antes de confirmar un pedido, consulta material, dimensiones, uso previsto, cantidad, precio total, impuestos que correspondan, disponibilidad y condiciones de entrega.</p>
+  <p>Las características técnicas y ambientales se verifican para cada referencia. No se presume que todos los productos tengan la misma composición, certificación, aptitud para alimentos o condiciones de disposición. Las condiciones concretas de una oferta y los compromisos informados al cliente deben respetarse; este aviso no permite desconocerlos ni limitar los derechos del consumidor.</p>
+
+  <h2>3. Uso del formulario</h2>
+  <p><strong>El formulario es actualmente una vista previa deshabilitada: no recoge ni envía mensajes.</strong> Mientras se habilita, utiliza <a href={whatsappUrl('Hola, quiero consultar opciones para mi negocio.')} target="_blank" rel="noopener noreferrer">WhatsApp al {business.phoneDisplay}</a>.</p>
+  <p>Cuando se habilite, su finalidad será recibir consultas sobre productos y contactar a quien las realiza. Una consulta no equivale a aceptar un pedido, reservar inventario, aprobar un crédito o garantizar una entrega. La aceptación de una oferta y sus condiciones se confirmará por el canal de atención correspondiente.</p>
+  <p>Suministra información veraz, propia o que estés autorizado a compartir, y únicamente los datos necesarios para tu consulta. No incluyas contraseñas, datos de tarjetas, documentos de identidad completos, información de salud ni datos de menores de edad en el mensaje.</p>
+
+  <h2>4. Datos personales y autorización</h2>
+  <p>El tratamiento se explica en la <a href={legalLinks.privacy}>Política de tratamiento de datos personales</a>, donde se detallan las finalidades, los derechos y el procedimiento de consultas y reclamos. La autorización del formulario será previa, informada y mediante una casilla sin marcar de antemano; deberá poder consultarse posteriormente.</p>
+  <p>Solicitar orientación no implica aceptar campañas publicitarias. Cualquier uso promocional adicional requerirá información y autorización separadas cuando corresponda. La simple navegación o el silencio no se tomarán como consentimiento.</p>
+
+  <h2>5. Uso permitido y contenidos</h2>
+  <p>Puedes consultar y compartir los enlaces del sitio para conocer el negocio. Debes abstenerte de suplantar identidades, enviar contenido ilícito, introducir código malicioso, intentar acceder sin autorización a sistemas o datos y obstaculizar el funcionamiento de la web.</p>
+  <p>El nombre comercial, logotipos, textos, fotografías, ilustraciones y demás recursos conservan los derechos de sus respectivos titulares. Su exhibición no transfiere derechos de explotación ni permite atribuirse su autoría. Los componentes de terceros se rigen por sus licencias.</p>
+
+  <h2>6. Enlaces, mapas y servicios externos</h2>
+  <p>WhatsApp, Instagram, Facebook, Google Maps y OpenStreetMap son servicios de terceros con sus propias condiciones y políticas. Los enlaces externos te llevan a esas plataformas. Los mapas pueden establecer conexiones con sus proveedores al cargarse, antes de que hagas clic en ellos. Consulta el apartado de servicios externos de nuestra <a href={`${legalLinks.privacy}#servicios-externos`}>política de datos</a>.</p>
+  <p>La ubicación y los destinos del mapa son referencias para orientarte. Las condiciones y la viabilidad de cada envío se acuerdan con el negocio antes de confirmarlo.</p>
+
+  <h2>7. Atención, garantías y derechos del consumidor</h2>
+  <p>Puedes comunicar una inconformidad o solicitar información por los canales indicados al final. Si tu solicitud se refiere a una compra, describe el producto y lo ocurrido y aporta el soporte de la operación si lo tienes, evitando exponer datos innecesarios.</p>
+  <p>Se respetan los derechos que resulten aplicables, incluidos información, calidad, seguridad, garantía y, cuando corresponda por la modalidad de venta, retracto o reversión del pago. Este sitio no establece renuncias a derechos ni exclusiones generales de responsabilidad. La gestión de una reclamación no exige renunciar a acudir a la autoridad competente.</p>
+
+  <h2>8. Disponibilidad, cambios y normativa</h2>
+  <p>El sitio puede requerir mantenimiento o correcciones. Los cambios de estos términos se publicarán con su versión y fecha; no modificarán retroactivamente derechos adquiridos ni autorizaciones de datos ya otorgadas. Los cambios en finalidades de tratamiento requerirán las actuaciones y autorizaciones que correspondan.</p>
+  <p>Estos términos se interpretan conforme a la legislación colombiana, sin restringir las competencias legales de las autoridades ni los derechos del consumidor. Vigencia de esta versión: {legal.effectiveDate}.</p>
+  <p>Referencias normativas: <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44306" target="_blank" rel="noopener noreferrer">Ley 1480 de 2011, Estatuto del Consumidor</a>, y <a href="https://apps.procuraduria.gov.co/normograma/compilacion/docs/ley_1581_2012.htm" target="_blank" rel="noopener noreferrer">Ley 1581 de 2012, protección de datos personales</a>.</p>
+</LegalLayout>

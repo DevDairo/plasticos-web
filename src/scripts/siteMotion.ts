@@ -6,7 +6,6 @@ gsap.registerPlugin(ScrollTrigger);
 // One reveal per content group keeps the rhythm consistent across pages.
 // Existing hero and proof-band entrances remain in CSS to avoid overlapping motion.
 const revealGroups = [
-  ['.home-intro-grid', ':scope > *'],
   ['.section-lines .section-heading', ':scope > *'],
   ['.line-illustration-grid', ':scope > *'],
   ['.line-custom-order', ':scope > *'],
